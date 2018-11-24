@@ -10,7 +10,16 @@ export default class App extends React.Component {
         <Text>Open up App.js to start working on your app!</Text>
 
         <PhoneVerificationView
-          style={{width: 300, height: 500}}
+          style={{width: '80%', height: 200}}
+          pinCount={6}
+          // codeInputFieldStyle={styles.borderStyleBase}
+          // codeInputHighlightStyle={styles.borderStyleHighLighted}
+
+          codeInputFieldStyle={styles.underlineStyleBase}
+          codeInputHighlightStyle={styles.underlineStyleHighLighted}
+          onCodeFilled = {(code => {
+            alert(`Code is ${code}, you are good to go!`)
+          })}
         />
       </View>
     );
@@ -23,5 +32,25 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  borderStyleBase: {
+    width: 30,
+    height: 45
+  },
+
+  borderStyleHighLighted: {
+    borderColor: "#03DAC6",
+  },
+
+  underlineStyleBase: {
+    width: 30,
+    height: 45,
+    borderWidth: 0,
+    borderBottomWidth: 1,
+  },
+
+  underlineStyleHighLighted: {
+    borderColor: "#03DAC6",
   },
 });
