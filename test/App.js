@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 
 import PhoneVerificationView from './src/PhoneVerificationView';
 
@@ -7,7 +7,9 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+        <TextInput
+          value = "3346"
+        />
 
         <PhoneVerificationView
           style={{width: '80%', height: 200}}

@@ -80,18 +80,24 @@ export default class PhoneVerificationView extends Component {
 
     _onChangeText = (index, text) => {
         const {onCodeFilled} = this.props
-        if (index === this.props.pinCount - 1) { 
-            const newdigits = this.state.digits.slice()
-            newdigits[index] = text.split("").pop()
-            this.setState({ digits: newdigits })
-            let result = newdigits.join("")
-            if (result.length >= this.props.pinCount) {
-                onCodeFilled && onCodeFilled(result)
-            }
+        let newdigits = this.state.digits.slice()
+
+        const oldTextLength = newdigits[index] ? newdigits[index].length : 0
+        const newTextLength = text.length
+        if (newTextLength - oldTextLength === this.props.pinCount) { //User copy pasted text in.
+            newdigits = text.split("").slice(oldTextLength, newTextLength)
+            this.setState( {digits: newdigits })
         } else {
-            const newdigits = this.state.digits.slice()
             newdigits[index] = text.split("").pop()
             this.setState({ digits: newdigits })
+        }
+
+        let result = newdigits.join("")
+        if (result.length >= this.props.pinCount) {
+            onCodeFilled && onCodeFilled(result)
+            this._focusField(this.props.pinCount - 1)
+
+        } else {
             if (text.length > 0 && index < this.props.pinCount - 1) {
                 this._focusField(index + 1)
             }
