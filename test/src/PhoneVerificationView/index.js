@@ -9,6 +9,7 @@ export default class PhoneVerificationView extends Component {
         codeInputFieldStyle: PropTypes.object,
         codeInputHighlightStyle: PropTypes.object,
         onCodeFilled: PropTypes.func,
+        code: PropTypes.string, 
     }
 
     static defaultProps = {
@@ -16,10 +17,11 @@ export default class PhoneVerificationView extends Component {
         codeInputFieldStyle: null,
         codeInputHighlightStyle: null,
         onCodeFilled: null,
+        code: "",
     }
 
     state = {
-        codes: [],
+        digits: [],
         selectedIndex: 0,
     }
 
@@ -27,6 +29,17 @@ export default class PhoneVerificationView extends Component {
 
     componentDidMount() {
         this.fields[0].focus && this.fields[0].focus()
+        this.setState({
+            digits: this.props.code,
+        })
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.code !== this.state.digits) {
+            this.setState({
+                digits: nextProps.code,
+            })
+        }
     }
 
     render() {
@@ -49,7 +62,7 @@ export default class PhoneVerificationView extends Component {
                     this._onChangeText(index, text)
                 }}
                 onKeyPress={({ nativeEvent: { key } }) => { this._onKeyPress(index, key) }}
-                value={this.state.codes[index]}
+                value={this.state.digits[index]}
                 keyboardType="number-pad"
                 key={index}
             />
@@ -68,17 +81,17 @@ export default class PhoneVerificationView extends Component {
     _onChangeText = (index, text) => {
         const {onCodeFilled} = this.props
         if (index === this.props.pinCount - 1) { 
-            const newCodes = this.state.codes.slice()
-            newCodes[index] = text.split("").pop()
-            this.setState({ codes: newCodes })
-            let result = newCodes.join("")
+            const newdigits = this.state.digits.slice()
+            newdigits[index] = text.split("").pop()
+            this.setState({ digits: newdigits })
+            let result = newdigits.join("")
             if (result.length >= this.props.pinCount) {
                 onCodeFilled && onCodeFilled(result)
             }
         } else {
-            const newCodes = this.state.codes.slice()
-            newCodes[index] = text
-            this.setState({ codes: newCodes })
+            const newdigits = this.state.digits.slice()
+            newdigits[index] = text.split("").pop()
+            this.setState({ digits: newdigits })
             if (text.length > 0 && index < this.props.pinCount - 1) {
                 this._focusField(index + 1)
             }
@@ -87,7 +100,7 @@ export default class PhoneVerificationView extends Component {
 
     _onKeyPress = (index, key) => {
         if(key === 'Backspace') {
-            if (!this.state.codes[index] && index > 0) {
+            if (!this.state.digits[index] && index > 0) {
                 this._onChangeText(index - 1, '')
                 this._focusField(index - 1)
             }

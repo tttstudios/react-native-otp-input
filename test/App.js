@@ -11,12 +11,12 @@ export default class App extends React.Component {
 
         <PhoneVerificationView
           style={{width: '80%', height: 200}}
-          pinCount={6}
-          // codeInputFieldStyle={styles.borderStyleBase}
-          // codeInputHighlightStyle={styles.borderStyleHighLighted}
-
-          codeInputFieldStyle={styles.underlineStyleBase}
-          codeInputHighlightStyle={styles.underlineStyleHighLighted}
+          pinCount={4}
+          code=""
+          codeInputFieldStyle={styles.borderStyleBase}
+          codeInputHighlightStyle={styles.borderStyleHighLighted}
+          // codeInputFieldStyle={styles.underlineStyleBase}
+          // codeInputHighlightStyle={styles.underlineStyleHighLighted}
           onCodeFilled = {(code => {
             alert(`Code is ${code}, you are good to go!`)
           })}
