@@ -28,7 +28,7 @@ export default class PhoneVerificationView extends Component {
     fields = []
 
     componentDidMount() {
-        this.fields[0].focus && this.fields[0].focus()
+        this.fields[0] && this.fields[0].focus && this.fields[0].focus()
         this.setState({
             digits: this.props.code.split(""),
         })
@@ -64,6 +64,7 @@ export default class PhoneVerificationView extends Component {
                 onKeyPress={({ nativeEvent: { key } }) => { this._onKeyPress(index, key) }}
                 value={this.state.digits[index]}
                 keyboardType="number-pad"
+                textContentType="oneTimeCode"
                 key={index}
             />
         )
