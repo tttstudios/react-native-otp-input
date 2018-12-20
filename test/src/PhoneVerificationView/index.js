@@ -30,14 +30,14 @@ export default class PhoneVerificationView extends Component {
     componentDidMount() {
         this.fields[0].focus && this.fields[0].focus()
         this.setState({
-            digits: this.props.code,
+            digits: this.props.code.split(""),
         })
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.code !== this.state.digits) {
             this.setState({
-                digits: nextProps.code,
+                digits: nextProps.code.split(""),
             })
         }
     }
