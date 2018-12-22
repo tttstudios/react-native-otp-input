@@ -3725,9 +3725,9 @@ react-native-maps@expo/react-native-maps#v0.22.1-exp.0:
   version "0.22.1"
   resolved "https://codeload.github.com/expo/react-native-maps/tar.gz/e6f98ff7272e5d0a7fe974a41f28593af2d77bb2"
 
-react-native-otp-input@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-otp-input/-/react-native-otp-input-1.0.0.tgz#b9f54380743b6f40fd2afad6b66dbf3a140508b4"
+react-native-otp-input@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-otp-input/-/react-native-otp-input-1.0.4.tgz#95e133246aae9e900dd90e376824e61ad9aaeb89"
 
 react-native-reanimated@1.0.0-alpha.10:
   version "1.0.0-alpha.10"

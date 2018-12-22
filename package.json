@@ -1,6 +1,6 @@
 {
   "name": "react-native-otp-input",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Easy to use UI to input the otp. Handles lots of edge cases. Appearnace can be easily customized  ",
   "main": "index.js",
   "directories": {
