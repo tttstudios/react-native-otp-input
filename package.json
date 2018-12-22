@@ -1,0 +1,21 @@
+{
+  "name": "react-native-otp-input",
+  "version": "1.0.3",
+  "description": "Easy to use UI to input the otp. Handles lots of edge cases. Appearnace can be easily customized  ",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native",
+    "otp",
+    "otc",
+    "phone",
+    "verification"
+  ],
+  "author": "anson@TTT",
+  "license": "MIT"
+}
