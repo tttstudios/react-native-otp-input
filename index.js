@@ -3,7 +3,7 @@ import { View, TextInput, Keyboard, TouchableWithoutFeedback } from 'react-nativ
 import PropTypes from 'prop-types'
 import styles from './styles'
 
-export default class PhoneVerificationView extends Component {
+export default class OTPInputView extends Component {
     static propTypes = {
         pinCount: PropTypes.number,
         codeInputFieldStyle: PropTypes.object,

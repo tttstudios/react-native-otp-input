@@ -1,7 +1,7 @@
-import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import React from 'react'
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
 
-import PhoneVerificationView from 'react-native-otp-input';
+import PhoneVerificationView from 'react-native-otp-input'
 
 export default class App extends React.Component {
   state = {
