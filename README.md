@@ -3,7 +3,7 @@
 
 **react-native-otp-input** is a tiny JS library which provides an elegant UI for user to input one time passcode (OTP). It features robust checks to handle edge cases for the highly volatile user inputs. We provide default UI but you can customize the appearance as you like. 
 
-<a href="https://imgflip.com/gif/2nvebz"><img src="https://i.imgflip.com/2nvebz.gif" title="made at imgflip.com"/></a>
+<a href="https://github.com/ansonyao/react-native-opt-input-anson/blob/master/example/demo.gif"><img src="https://github.com/ansonyao/react-native-opt-input-anson/blob/master/example/demo.gif" title="Demo.gif"/></a>
 
 ## Installation
 `yarn add react-native-otp-input`

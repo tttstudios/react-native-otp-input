@@ -117,7 +117,6 @@ export default class OTPInputView extends Component {
         if (result.length >= this.props.pinCount) {
             onCodeFilled && onCodeFilled(result)
             this._focusField(this.props.pinCount - 1)
-            Keyboard.dismiss()
             this._blurAllFields()
         } else {
             if (text.length > 0 && index < this.props.pinCount - 1) {

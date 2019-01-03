@@ -23,7 +23,7 @@ export default class App extends React.Component {
           codeInputFieldStyle={styles.underlineStyleBase}
           codeInputHighlightStyle={styles.underlineStyleHighLighted}
           onCodeFilled = {(code => {
-            alert(`Code is ${code}, you are good to go!`)
+              console.log(`Code is ${code}, you are good to go!`)
           })}
         />
 
