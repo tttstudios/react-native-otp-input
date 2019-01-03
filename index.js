@@ -52,7 +52,10 @@ export default class OTPInputView extends Component {
             >
             <TouchableWithoutFeedback 
                 style={{width: '100%', height: '100%'}}
-                onPress={() => {this._focusField(this.props.pinCount - 1)}}
+                onPress={ () => {
+                    let filledPinCount = this.state.digits.filter((digit) => { return !!digit }).length
+                    this._focusField(Math.min(filledPinCount, this.props.pinCount - 1))
+                }}
             >
                 <View
                     style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%', height: '100%' }}
