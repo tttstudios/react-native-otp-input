@@ -3721,9 +3721,13 @@ react-native-gesture-handler@1.0.9:
     invariant "^2.2.2"
     prop-types "^15.5.10"
 
-"react-native-maps@github:expo/react-native-maps#v0.22.1-exp.0":
+react-native-maps@expo/react-native-maps#v0.22.1-exp.0:
   version "0.22.1"
   resolved "https://codeload.github.com/expo/react-native-maps/tar.gz/e6f98ff7272e5d0a7fe974a41f28593af2d77bb2"
+
+react-native-otp-input@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/react-native-otp-input/-/react-native-otp-input-1.0.5.tgz#2de3567ee3d13c35571f2140b6457d04c7568825"
 
 react-native-reanimated@1.0.0-alpha.10:
   version "1.0.0-alpha.10"

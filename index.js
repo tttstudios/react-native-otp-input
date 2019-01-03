@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { View, TextInput } from 'react-native'
+import { View, TextInput, Keyboard, TouchableWithoutFeedback } from 'react-native'
 import PropTypes from 'prop-types'
 import styles from './styles'
 
-export default class PhoneVerificationView extends Component {
+export default class OTPInputView extends Component {
     static propTypes = {
         pinCount: PropTypes.number,
         codeInputFieldStyle: PropTypes.object,
@@ -28,9 +28,10 @@ export default class PhoneVerificationView extends Component {
     fields = []
 
     componentDidMount() {
-        this.fields[0].focus && this.fields[0].focus()
         this.setState({
             digits: this.props.code.split(""),
+        }, () => {
+            this._focusField(0)
         })
     }
 
@@ -38,14 +39,30 @@ export default class PhoneVerificationView extends Component {
         if (nextProps.code !== this.state.digits) {
             this.setState({
                 digits: nextProps.code.split(""),
+            }, () => {
+                this._focusField(0)
             })
         }
     }
 
     render() {
         return (
-            <View style={[{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%', height: '100%' }, this.props.style]}>
-                {this._renderTextFields()}
+            <View
+                style={this.props.style}
+            >
+            <TouchableWithoutFeedback 
+                style={{width: '100%', height: '100%'}}
+                onPress={ () => {
+                    let filledPinCount = this.state.digits.filter((digit) => { return !!digit }).length
+                    this._focusField(Math.min(filledPinCount, this.props.pinCount - 1))
+                }}
+            >
+                <View
+                    style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%', height: '100%' }}
+                >
+                    {this._renderTextFields()}
+                </View>
+            </TouchableWithoutFeedback>
             </View>
         );
     }
@@ -54,18 +71,22 @@ export default class PhoneVerificationView extends Component {
         const {codeInputFieldStyle, codeInputHighlightStyle} = this.props
         const {defaultTextFieldStyle} = styles
         return (
-            <TextInput
-                underlineColorAndroid='rgba(0,0,0,0)'
-                style={this.state.selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
-                ref={ref => { this.fields[index] = ref }}
-                onChangeText={text => {
-                    this._onChangeText(index, text)
-                }}
-                onKeyPress={({ nativeEvent: { key } }) => { this._onKeyPress(index, key) }}
-                value={this.state.digits[index]}
-                keyboardType="number-pad"
-                key={index}
-            />
+            <View pointerEvents="none">
+                <TextInput
+                    underlineColorAndroid='rgba(0,0,0,0)'
+                    style={this.state.selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
+                    ref={ref => { this.fields[index] = ref }}
+                    onChangeText={text => {
+                        this._onChangeText(index, text)
+                    }}
+                    onKeyPress={({ nativeEvent: { key } }) => { this._onKeyPress(index, key) }}
+                    value={this.state.digits[index]}
+                    keyboardType="number-pad"
+                    textContentType="oneTimeCode"
+                    key={index}
+                    selectionColor="#00000000"
+                />
+            </View>
         )
     }
 
@@ -96,7 +117,8 @@ export default class PhoneVerificationView extends Component {
         if (result.length >= this.props.pinCount) {
             onCodeFilled && onCodeFilled(result)
             this._focusField(this.props.pinCount - 1)
-
+            Keyboard.dismiss()
+            this._blurAllFields()
         } else {
             if (text.length > 0 && index < this.props.pinCount - 1) {
                 this._focusField(index + 1)
@@ -117,6 +139,15 @@ export default class PhoneVerificationView extends Component {
         this.fields[index].focus()
         this.setState({
             selectedIndex: index
+        })
+    }
+
+    _blurAllFields = () => {
+        for (field of this.fields) {
+            field.blur()
+        }
+        this.setState({
+            selectedIndex: -1,
         })
     }
 }
