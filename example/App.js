@@ -26,8 +26,6 @@ export default class App extends React.Component {
               console.log(`Code is ${code}, you are good to go!`)
           })}
         />
-
-
       </View>
     );
   }
