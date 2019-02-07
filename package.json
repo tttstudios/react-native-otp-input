@@ -1,6 +1,6 @@
 {
   "name": "react-native-otp-input",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A tiny JS library which provides an elegant UI for user to input one time passcode (OTP). It features robust checks to handle edge cases for the highly volatile user inputs. We provide default UI but you can customize the appearance as you like.",
   "main": "index.js",
   "directories": {
