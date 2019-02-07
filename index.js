@@ -109,7 +109,18 @@ export default class OTPInputView extends Component {
             newdigits = text.split("").slice(oldTextLength, newTextLength)
             this.setState( {digits: newdigits })
         } else {
-            newdigits[index] = text.split("").pop()
+            if (text.length === 0) {
+                if (newdigits.length > 0) {
+                    newdigits = newdigits.slice(0, newdigits.length-1)
+                }
+            } else {
+                text.split("").forEach((value) => {
+                    newdigits[index] = value
+                    index += 1
+                })
+                index -= 1
+            }
+
             this.setState({ digits: newdigits })
         }
 

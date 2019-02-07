@@ -55,3 +55,4 @@ buck-out/
 
 # Environment file
 .env
+ReactotronConfig.js
