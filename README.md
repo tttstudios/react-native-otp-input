@@ -1,9 +1,10 @@
 ![react-native-otp-input]
 # react-native-otp-input
 
-**react-native-otp-input** is a tiny JS library which provides an elegant UI for user to input one time passcode (OTP). It features robust checks to handle edge cases for the highly volatile user gestures. We provide default UI but you can customize the appearance as you like.
+**react-native-otp-input** is a tiny JS library which provides an elegant UI for user to input one time passcode (OTP). It will autofill when you copy the code in SMS on Android. For iOS, it handles and the input suggestion when the OTP SMS is received. It also features a carefully crafted flow to handle edge cases for volatile user gestures. We provide default UI but you can always customize the appearance as you like.
 
-![demo.gif](https://github.com/Twotalltotems/react-native-otp-input/blob/master/example/demo.gif)
+![demo.gif](https://github.com/ansonyao/react-native-opt-input-anson/blob/master/example/Assets/iosvideo.gif)
+![demo.gif](https://github.com/ansonyao/react-native-opt-input-anson/blob/master/example/Assets/AndroidVideo.gif)
 
 ## Installation
 `npm install --save react-native-otp-input`
@@ -13,24 +14,34 @@ or
 ## Dependencies
 It does not have dependencies.
 
-
 ## Basic Usage
 
 ```
 import OTPInputView from 'react-native-otp-input'
 
 <OTPInputView
-  style={{width: '80%', height: 200}}
-  pinCount={4}
-  code={this.state.code}
-  codeInputFieldStyle={styles.underlineStyleBase}
-  codeInputHighlightStyle={styles.underlineStyleHighLighted}
-  onCodeFilled = {(code => {
-    alert(`Code is ${code}, you are good to go!`)
-  })}
+    style={{width: '80%', height: 200}}
+    pinCount={4}
+    code=""
+    // codeInputFieldStyle={styles.borderStyleBase}
+    // codeInputHighlightStyle={styles.borderStyleHighLighted}
+    codeInputFieldStyle={styles.underlineStyleBase}
+    codeInputHighlightStyle={styles.underlineStyleHighLighted}
+    onCodeFilled = {(code => {
+        console.log(`Code is ${code}, you are good to go!`)
+    })}
 />
 
 const styles = StyleSheet.create({
+  borderStyleBase: {
+    width: 30,
+    height: 45
+  },
+
+  borderStyleHighLighted: {
+    borderColor: "#03DAC6",
+  },
+
   underlineStyleBase: {
     width: 30,
     height: 45,
@@ -49,21 +60,24 @@ const styles = StyleSheet.create({
 
 | Parameter   | required | Description |
 |-------------|----------|-------------|
-| code        |    NO    |  The value to be passed to the component. Besides providing an initial value, changing this value will override the user input and reset the focus |
 | pinCount    |    YES   |  Number of digits you want |
+| code        |    NO    |  Besides providing an initial value, you can also give this value using state or props. It will override the user input and reset the focus. For example, you can use it to hook up with the Android SMS Retriever API. |
 | codeInputFieldStyle | NO | The style of the input field which is NOT focused |
 | codeInputHighlightStyle | NO | The style of the input field which is focused |
 | onCodeFilled | NO | callback when the code is done |
 
 ## Notes
-Although this library is an effort to make pin code input more efficient, it should be noted that the phone verification on mobile OS can be achieved without any text input. On iOS, it can be a single tap on a pin code which the operating system suggests. On Android, the system can validate the code without any user interaction (Automatic SMS Verification). The user input of pin code verification should be considered as the last resort.
+The iOS input suggestion requires React Native 0.58+. 
 
-This library already supports the pin code input suggestion on iOS, and it will be functional with React Native 0.58+. For Android, I would suggest to take a look at @Faizal's repo React-Native-OTP-Verify (https://github.com/faizalshap/react-native-otp-verify). It should be straight-forward to use this library along with @Faizal's library, in order to support automatic code verification on Android. 
+On Android, it will be autofilled when you press the copy code button in the notification bar (see above gif). It will only do so for the code which is sent after the view is created. So make sure you request the code AFTER this view is rendered.
+
+If you are interested in Android SMS Retriever API, I would suggest @Faizal's repo React-Native-OTP-Verify (https://github.com/faizalshap/react-native-otp-verify). It looks pretty good and it should be straight-forward to use this library along with @Faizal's library.
 
 ## RoadMap
 * [ ] Add some tests
 
 ## Developers
-The library is developed by TTT stuido. TTT studio is a web and mobile development service provider, proudly operating in Canada. 
+The app is developed by Anson Yao, Felipe Pena and other mobile team members in TTT stuidio.
+![TTT studio](https://ttt.studio/) is a software developement company operating in Vancouver. We craft software in mobile, web, backend, facial recognition, AI, AR/VR. 
 
-![ttt-logo.png](https://github.com/Twotalltotems/react-native-otp-input/blob/master/example/ttt-logo.png)
+![ttt-logo.png](https://ttt.studio/wp-content/themes/tttwordpresstheme/imgs/ttt-colour.png)

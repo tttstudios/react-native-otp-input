@@ -10,7 +10,7 @@
 import React from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
 
-import PhoneVerificationView from 'react-native-otp-input'
+import OTPInputView from 'react-native-otp-input'
 
 export default class App extends React.Component {
   render() {
@@ -20,7 +20,7 @@ export default class App extends React.Component {
           <Text>Resend</Text>
         </TouchableOpacity>
 
-        <PhoneVerificationView
+        <OTPInputView
           style={{width: '80%', height: 200}}
           pinCount={4}
           code=""
