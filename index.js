@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, TextInput, Keyboard, TouchableWithoutFeedback } from 'react-native'
+import { View, TextInput, TouchableWithoutFeedback, Clipboard } from 'react-native'
 import PropTypes from 'prop-types'
 import styles from './styles'
 
@@ -33,6 +33,25 @@ export default class OTPInputView extends Component {
         }, () => {
             this._focusField(0)
         })
+        this.checkPinCodeFromClipBoard()
+    }
+
+    componentWillUnmount() {
+        if (this._timer) {
+            clearInterval(this._timer)
+        }
+    }
+
+    checkPinCodeFromClipBoard = () => {
+        this._timer = setInterval(() => {
+            Clipboard.getString().then(code => {
+                if (code.length === this.props.pinCount && (this._code !== code)) {
+                    this.setState({ digits: code.split("") })
+                }
+                this._code = code
+            }).catch(e => {
+            })
+        }, 1000)
     }
 
     componentWillReceiveProps(nextProps) {
