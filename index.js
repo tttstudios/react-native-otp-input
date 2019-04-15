@@ -28,12 +28,18 @@ export default class OTPInputView extends Component {
     fields = []
 
     componentDidMount() {
+        const focusIndex = this.props.code.length ? this.props.code.length - 1 : 0
         this.setState({
             digits: this.props.code.split(""),
         }, () => {
-            this._focusField(0)
+            if (focusIndex === 0) {
+                this._focusField(focusIndex)
+            }
         })
         this.checkPinCodeFromClipBoard()
+        this._timer = setInterval(() => {
+            this.checkPinCodeFromClipBoard()
+        }, 400)
     }
 
     componentWillUnmount() {
@@ -42,16 +48,20 @@ export default class OTPInputView extends Component {
         }
     }
 
+
     checkPinCodeFromClipBoard = () => {
-        this._timer = setInterval(() => {
-            Clipboard.getString().then(code => {
-                if (code.length === this.props.pinCount && (this._code !== code)) {
-                    this.setState({ digits: code.split("") })
-                }
-                this._code = code
-            }).catch(e => {
-            })
-        }, 1000)
+        Clipboard.getString().then(code => {
+            if (this._hasCheckedCode && code.length === this.props.pinCount && (this._code !== code)) {
+                this.setState({
+                    digits: code.split(""),
+                }, () => {
+                    this._blurAllFields()
+                })
+            }
+            this._code = code
+            this._hasCheckedCode = true
+        }).catch(e => {
+        })
     }
 
     componentWillReceiveProps(nextProps) {
@@ -90,7 +100,7 @@ export default class OTPInputView extends Component {
         const {codeInputFieldStyle, codeInputHighlightStyle} = this.props
         const {defaultTextFieldStyle} = styles
         return (
-            <View pointerEvents="none">
+            <View pointerEvents="none" key={index + "view"}>
                 <TextInput
                     underlineColorAndroid='rgba(0,0,0,0)'
                     style={this.state.selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}

@@ -13,9 +13,6 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-nativ
 import PhoneVerificationView from 'react-native-otp-input'
 
 export default class App extends React.Component {
-  state = {
-    code: "",
-  }
   render() {
     return (
       <View style={styles.container}>
@@ -26,7 +23,7 @@ export default class App extends React.Component {
         <PhoneVerificationView
           style={{width: '80%', height: 200}}
           pinCount={4}
-          code={this.state.code}
+          code=""
           // codeInputFieldStyle={styles.borderStyleBase}
           // codeInputHighlightStyle={styles.borderStyleHighLighted}
           codeInputFieldStyle={styles.underlineStyleBase}
