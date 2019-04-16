@@ -1,4 +1,3 @@
-![react-native-otp-input]
 # react-native-otp-input
 
 **react-native-otp-input** is a tiny JS library which provides an elegant UI for user to input one time passcode (OTP). It handles and the input suggestion on iOS when the OTP SMS is received. For Android, it will autofill when you press the copy button on the SMS notification bar. It also features a carefully crafted flow to handle edge cases for volatile user gestures. We provide default UI but you can always customize the appearance as you like.
@@ -69,15 +68,17 @@ const styles = StyleSheet.create({
 ## Notes
 The iOS input suggestion requires React Native 0.58+. 
 
-On Android, it will be autofilled when you press the copy code button in the notification bar (see above gif). It will only do so for the code which is sent after the view is created. So make sure you request the code AFTER this view is rendered.
+On Android, it will be autofilled when you press the copy code button in the notification bar (see above gif). It will do so  only if the code is sent after the view is loaded. So make sure you request the code AFTER this view is loaded.
 
-If you are interested in Android SMS Retriever API, I would suggest @Faizal's repo React-Native-OTP-Verify (https://github.com/faizalshap/react-native-otp-verify). It looks pretty good and it should be straight-forward to use this library along with @Faizal's library.
+If you are interested in Android SMS Retriever API, I would suggest @Faizal's repo [React-Native-OTP-Verify](https://github.com/faizalshap/react-native-otp-verify). It looks pretty cool and it should be straight-forward to use React-Native-OTP-Verify along with this library.
 
 ## RoadMap
-* [ ] Add some tests
+* [ ] Typescript
+* [ ] Add tests
 
 ## Developers
-The app is developed by Anson Yao, Felipe Pena and other mobile team members in TTT stuidio.
-![TTT studio](https://ttt.studio/) is a software developement company operating in Vancouver. We craft software in mobile, web, backend, facial recognition, AI, AR/VR. 
+The app is developed by Anson Yao, Felipe Peña and other mobile team members in TTT studio.
+
+[TTT studio](https://ttt.studio/) is a software developement agency operating in Vancouver. We craft software in mobile, web, backend, facial recognition, AI, AR/VR. 
 
 ![ttt-logo.png](https://ttt.studio/wp-content/themes/tttwordpresstheme/imgs/ttt-colour.png)
