@@ -1,6 +1,6 @@
 {
-  "name": "react-native-otp-input",
-  "version": "1.0.10",
+  "name": "@twotalltotems/react-native-otp-input",
+  "version": "1.0.12",
   "description": "A tiny JS library which provides an elegant UI for user to input one time passcode (OTP). It features robust checks to handle edge cases for the highly volatile user inputs. We provide default UI but you can customize the appearance as you like.",
   "main": "index.js",
   "directories": {
@@ -9,13 +9,23 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Twotalltotems/react-native-otp-input.git"
+  },
   "keywords": [
     "react-native",
     "otp",
     "otc",
+    "one time password",
+    "one time code",  
     "phone",
     "verification"
   ],
-  "author": "Anson Yao, Felipe Pena",
+  "author": "TTT Studio (https://ttt.studio)",
+  "contributors": [
+    "Anson Yao <yaoenxin@gmail.com> (https://github.com/ansonyao)",
+    "Felipe Peña <felipe@penya.cl> (http://felipe.penya.cl)"
+  ],
   "license": "MIT"
 }
