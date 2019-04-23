@@ -1,6 +1,6 @@
 # react-native-otp-input
 
-**react-native-otp-input** is a tiny JS library which provides an elegant UI for user to input one time passcode (OTP). It handles and the input suggestion on iOS when the OTP SMS is received. For Android, it will autofill when you press the copy button on the SMS notification bar. It also features a carefully crafted flow to handle edge cases for volatile user gestures. We provide default UI but you can always customize the appearance as you like.
+**react-native-otp-input** is a tiny JS library which provides an elegant UI for user to input one time passcode (OTP). It handles the input suggestion on iOS when the OTP SMS is received. For Android, it will autofill when you press the copy button on the SMS notification bar. It also features a carefully crafted flow to handle edge cases for volatile user gestures. We provide default UI but you can always customize the appearance as you like.
 
 ![demo.gif](https://s3.ca-central-1.amazonaws.com/tttevents/iosvideo.gif)
 ![demo.gif](https://s3.ca-central-1.amazonaws.com/tttevents/android.gif)
@@ -77,8 +77,8 @@ If you are interested in Android SMS Retriever API, I would suggest @Faizal's re
 * [ ] Add tests
 
 ## Developers
-The app is developed by Anson Yao, Felipe Peña and other mobile team members in TTT studio.
+The library is developed by Anson Yao, Felipe Peña and other mobile team members in TTT studios.
 
-[TTT studio](https://ttt.studio/) is a software developement agency operating in Vancouver. We craft software in mobile, web, backend, facial recognition, AI, AR/VR. 
+[TTT studios](https://ttt.studio/) is a software developement agency operating in Vancouver. We craft software in mobile, web, backend, facial recognition, AI, AR/VR. 
 
 ![ttt-logo.png](https://ttt.studio/wp-content/themes/tttwordpresstheme/imgs/ttt-colour.png)
