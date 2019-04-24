@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import { View, TextInput, TouchableWithoutFeedback, Clipboard } from 'react-native'
+import { View, TextInput, TouchableWithoutFeedback, Clipboard, Platform } from 'react-native'
 import PropTypes from 'prop-types'
 import styles from './styles'
+
+const majorVersionIOS = parseInt(Platform.Version, 10);
+const isOTPSupported = (Platform.OS === 'ios' && majorVersionIOS >= 12)
 
 export default class OTPInputView extends Component {
     static propTypes = {
@@ -111,7 +114,7 @@ export default class OTPInputView extends Component {
                     onKeyPress={({ nativeEvent: { key } }) => { this._onKeyPress(index, key) }}
                     value={this.state.digits[index]}
                     keyboardType="number-pad"
-                    textContentType="oneTimeCode"
+                    textContentType= {isOTPSupported ? "oneTimeCode" : "none"}
                     key={index}
                     selectionColor="#00000000"
                 />
