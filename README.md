@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
 | onCodeFilled | NO | callback when the code is done |
 
 ## Notes
-The iOS input suggestion requires React Native 0.58+. 
+The iOS input suggestion requires React Native 0.58+ and works for iOS 12 and above. 
 
 On Android, it will be autofilled when you press the copy code button in the notification bar (see above gif). It will do so  only if the code is sent after the view is loaded. So make sure you request the code AFTER this view is loaded.
 
