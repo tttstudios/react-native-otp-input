@@ -114,6 +114,7 @@ export default class OTPInputView extends Component {
                     onKeyPress={({ nativeEvent: { key } }) => { this._onKeyPress(index, key) }}
                     value={this.state.digits[index]}
                     keyboardType="number-pad"
+                    autoFocus={true}
                     textContentType= {isOTPSupported ? "oneTimeCode" : "none"}
                     key={index}
                     selectionColor="#00000000"
