@@ -1,6 +1,6 @@
-# react-native-otp-input
+# @twotalltotems/react-native-otp-input
 
-**react-native-otp-input** is a tiny JS library which provides an elegant UI for user to input one time passcode (OTP). It handles the input suggestion on iOS when the OTP SMS is received. For Android, it will autofill when you press the copy button on the SMS notification bar. It also features a carefully crafted flow to handle edge cases for volatile user gestures. We provide default UI but you can always customize the appearance as you like.
+**@twotalltotems/react-native-otp-input** is a tiny JS library which provides an elegant UI for user to input one time passcode (OTP). It handles the input suggestion on iOS when the OTP SMS is received. For Android, it will autofill when you press the copy button on the SMS notification bar. It also features a carefully crafted flow to handle edge cases for volatile user gestures. We provide default UI but you can always customize the appearance as you like.
 
 ![demo.gif](https://s3.ca-central-1.amazonaws.com/tttevents/iosvideo.gif)
 ![demo.gif](https://s3.ca-central-1.amazonaws.com/tttevents/android.gif)
