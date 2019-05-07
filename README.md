@@ -16,12 +16,13 @@ It does not have additional dependencies except for react native itself.
 ## Basic Usage
 
 ```
-import OTPInputView from 'react-native-otp-input'
+import OTPInputView from '@twotalltotems/react-native-otp-input'
 
 <OTPInputView
     style={{width: '80%', height: 200}}
     pinCount={4}
     code=""
+    autoFocusOnLoad={true}
     // codeInputFieldStyle={styles.borderStyleBase}
     // codeInputHighlightStyle={styles.borderStyleHighLighted}
     codeInputFieldStyle={styles.underlineStyleBase}
@@ -63,6 +64,7 @@ const styles = StyleSheet.create({
 | code        |    NO    |  Besides providing an initial value, you can also give this value using state or props. It will override the user input and reset the focus. For example, you can use it to hook up with the Android SMS Retriever API. |
 | codeInputFieldStyle | NO | The style of the input field which is NOT focused |
 | codeInputHighlightStyle | NO | The style of the input field which is focused |
+| autoFocusOnLoad | NO | Auto activate the input and bring up the keyboard when component is loaded |
 | onCodeFilled | NO | callback when the code is done |
 
 ## Notes

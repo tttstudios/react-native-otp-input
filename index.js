@@ -12,6 +12,7 @@ export default class OTPInputView extends Component {
         codeInputFieldStyle: PropTypes.object,
         codeInputHighlightStyle: PropTypes.object,
         onCodeFilled: PropTypes.func,
+        autoFocusOnLoad: PropTypes.bool,
         code: PropTypes.string, 
     }
 
@@ -20,6 +21,7 @@ export default class OTPInputView extends Component {
         codeInputFieldStyle: null,
         codeInputHighlightStyle: null,
         onCodeFilled: null,
+        autoFocusOnLoad: true,
         code: "",
     }
 
@@ -35,7 +37,7 @@ export default class OTPInputView extends Component {
         this.setState({
             digits: this.props.code.split(""),
         }, () => {
-            if (focusIndex === 0) {
+            if (focusIndex === 0 && this.props.autoFocusOnLoad) {
                 this._focusField(focusIndex)
             }
         })

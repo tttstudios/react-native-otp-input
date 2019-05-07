@@ -24,6 +24,7 @@ export default class App extends React.Component {
           style={{width: '80%', height: 200}}
           pinCount={4}
           code=""
+          autoFocusOnLoad={true}
           // codeInputFieldStyle={styles.borderStyleBase}
           // codeInputHighlightStyle={styles.borderStyleHighLighted}
           codeInputFieldStyle={styles.underlineStyleBase}
