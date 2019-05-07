@@ -10,7 +10,7 @@
 import React from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
 
-import OTPInputView from 'react-native-otp-input'
+import OTPInputView from '@twotalltotems/react-native-otp-input'
 
 export default class App extends React.Component {
   render() {
