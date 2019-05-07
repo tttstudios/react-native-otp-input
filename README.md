@@ -6,9 +6,9 @@
 ![demo.gif](https://s3.ca-central-1.amazonaws.com/tttevents/android.gif)
 
 ## Installation
-`npm install --save react-native-otp-input`
+`npm install --save @twotalltotems/react-native-otp-input`
 or
-`yarn add react-native-otp-input`
+`yarn add @twotalltotems/react-native-otp-input`
 
 ## Dependencies
 It does not have additional dependencies except for react native itself.
