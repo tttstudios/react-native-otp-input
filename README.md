@@ -78,8 +78,48 @@ If you are interested in Android SMS Retriever API, I would suggest @Faizal's re
 * [ ] Typescript
 * [ ] Add tests
 
-## Developers
-The library is developed by Anson Yao, Felipe Peña and other mobile team members in TTT studios.
+## Contributors
+<table>
+    <tr border="0" style="border: none; ">
+	<th border="0" style="border-left: none; border-right: none;">
+        	<img src="https://avatars1.githubusercontent.com/u/1243479?s=400&v=4" width="60px;" style="border-radius: 50%;"/>
+        	<br />
+        	<sub><a href="https://github.com/ansonyao">Anson Yao</a></sub> <br />
+        </th>
+        <th border="0" style="border-left: none; border-right: none;">
+        <div>
+        	<img src="https://avatars3.githubusercontent.com/u/16603120?s=460&v=4" width="60px;" style="border-radius: 50%;"/>
+        	<br />
+        	<sub><a href="https://github.com/BeckyWu220">Becky Wu</a></sub> <br />
+        </div>
+        </th>
+        <th border="0" style="border-left: none; border-right: none;">
+        	<img src="https://avatars3.githubusercontent.com/u/440097?s=460&v=4" width="60px;" style="border-radius: 50%;"/>
+        	<br />
+        	<sub><a href="https://github.com/fpena">Felipe Peña</a></sub> <br />
+        </th>
+        <th border="0" style="border-left: none; border-right: none;">
+        	<img src="https://avatars3.githubusercontent.com/u/3868329?s=460&v=4" width="60px;" style="border-radius: 50%;"/>
+        	<br />
+        	<sub><a href="https://github.com/VinsonLi">Vinson Li</a></sub> <br />
+        </th>
+        <th border="0" style="border-left: none; border-right: none;">
+        	<img src="https://avatars0.githubusercontent.com/u/15810133?s=400&v=4" width="60px;" style="border-radius: 50%;"/>
+        	<br />
+        	<sub><a href="https://github.com/felixcck">Felix Cheng</a></sub> <br />
+        </th>
+        <th border="0" style="border-left: none; border-right: none;">
+        	<img src="https://avatars3.githubusercontent.com/u/10748192?s=460&v=4" width="60px;" style="border-radius: 50%;"/>
+        	<br />
+        	<sub><a href="https://github.com/MitchellGanton">Mitchell Ganton</a></sub> <br />
+        </th>
+        <th border="0" style="border-left: none; border-right: none;">
+        	<img src="https://avatars0.githubusercontent.com/u/36147173?s=460&v=4" width="60px;" style="border-radius: 50%;"/>
+        	<br />
+        	<sub><a href="https://github.com/gordonzhang17">Gordan Zhang</a></sub> <br />
+        </th>
+    </tr>
+</table>
 
 ## Premium Support By TTT Studios
 
