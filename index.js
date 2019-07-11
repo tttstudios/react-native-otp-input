@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, TextInput, TouchableWithoutFeedback, Clipboard, Platform } from 'react-native'
+import { View, TextInput, TouchableWithoutFeedback, Clipboard, Platform, Keyboard } from 'react-native'
 import PropTypes from 'prop-types'
 import styles from './styles'
 
@@ -45,14 +45,20 @@ export default class OTPInputView extends Component {
         this._timer = setInterval(() => {
             this.checkPinCodeFromClipBoard()
         }, 400)
+        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.handleKeyboardDidHide)
     }
 
     componentWillUnmount() {
         if (this._timer) {
             clearInterval(this._timer)
         }
+        this.keyboardDidHideListener.remove()
     }
 
+    handleKeyboardDidHide = () => {
+        this._blurAllFields() 
+        return false
+    }
 
     checkPinCodeFromClipBoard = () => {
         Clipboard.getString().then(code => {
