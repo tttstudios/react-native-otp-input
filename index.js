@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import { View, TextInput, TouchableWithoutFeedback, Clipboard, Platform, Keyboard } from 'react-native'
+import { View, TextInput, TouchableWithoutFeedback, Clipboard, Keyboard } from 'react-native'
 import PropTypes from 'prop-types'
 import styles from './styles'
-
-const majorVersionIOS = parseInt(Platform.Version, 10);
-const isOTPSupported = (Platform.OS === 'ios' && majorVersionIOS >= 12)
+import { isAutoFillSupported } from './helpers/device'
 
 export default class OTPInputView extends Component {
     static propTypes = {
@@ -33,12 +31,13 @@ export default class OTPInputView extends Component {
     fields = []
 
     componentDidMount() {
-        const focusIndex = this.props.code.length ? this.props.code.length - 1 : 0
+        const { code, autoFocusOnLoad } = this.props
+        const focusIndex = code.length ? code.length - 1 : 0
         this.setState({
-            digits: this.props.code.split(""),
+            digits: code.split(""),
         }, () => {
-            if (focusIndex === 0 && this.props.autoFocusOnLoad) {
-                this._focusField(focusIndex)
+            if (focusIndex === 0 && autoFocusOnLoad) {
+                this.focusField(focusIndex)
             }
         })
         this.checkPinCodeFromClipBoard()
@@ -55,97 +54,45 @@ export default class OTPInputView extends Component {
         this.keyboardDidHideListener.remove()
     }
 
-    handleKeyboardDidHide = () => {
-        this._blurAllFields() 
-        return false
-    }
-
-    checkPinCodeFromClipBoard = () => {
-        Clipboard.getString().then(code => {
-            if (this._hasCheckedCode && code.length === this.props.pinCount && (this._code !== code)) {
-                this.setState({
-                    digits: code.split(""),
-                }, () => {
-                    this._blurAllFields()
-                })
-            }
-            this._code = code
-            this._hasCheckedCode = true
-        }).catch(e => {
-        })
-    }
-
     componentWillReceiveProps(nextProps) {
-        if (nextProps.code !== this.state.digits) {
+        const { digits } = this.state
+        if (nextProps.code !== digits) {
             this.setState({
                 digits: nextProps.code.split(""),
             }, () => {
-                this._focusField(0)
+                this.focusField(0)
             })
         }
     }
 
-    render() {
-        return (
-            <View
-                style={this.props.style}
-            >
-            <TouchableWithoutFeedback 
-                style={{width: '100%', height: '100%'}}
-                onPress={ () => {
-                    let filledPinCount = this.state.digits.filter((digit) => { return !!digit }).length
-                    this._focusField(Math.min(filledPinCount, this.props.pinCount - 1))
-                }}
-            >
-                <View
-                    style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%', height: '100%' }}
-                >
-                    {this._renderTextFields()}
-                </View>
-            </TouchableWithoutFeedback>
-            </View>
-        );
+    handleKeyboardDidHide = () => {
+        this.blurAllFields() 
     }
 
-    _renderOneInputField = (index) => {
-        const {codeInputFieldStyle, codeInputHighlightStyle} = this.props
-        const {defaultTextFieldStyle} = styles
-        return (
-            <View pointerEvents="none" key={index + "view"}>
-                <TextInput
-                    underlineColorAndroid='rgba(0,0,0,0)'
-                    style={this.state.selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
-                    ref={ref => { this.fields[index] = ref }}
-                    onChangeText={text => {
-                        this._onChangeText(index, text)
-                    }}
-                    onKeyPress={({ nativeEvent: { key } }) => { this._onKeyPress(index, key) }}
-                    value={this.state.digits[index]}
-                    keyboardType="number-pad"
-                    textContentType= {isOTPSupported ? "oneTimeCode" : "none"}
-                    key={index}
-                    selectionColor="#00000000"
-                />
-            </View>
-        )
+    checkPinCodeFromClipBoard = () => {
+        const { pinCount } = this.props
+        Clipboard.getString().then(code => {
+            if (this.hasCheckedClipBoard && code.length === pinCount && (this.clipBoardCode !== code)) {
+                this.setState({
+                    digits: code.split(""),
+                }, () => {
+                    this.blurAllFields()
+                })
+            }
+            this.clipBoardCode = code
+            this.hasCheckedClipBoard = true
+        }).catch(e => {
+        })
     }
 
-    _renderTextFields = () => {
-        let array = new Array()
-        for (i = 0; i<this.props.pinCount; i++) {
-            array[i] = i
-        }
-        return array.map(this._renderOneInputField)
-    }
-
-
-    _onChangeText = (index, text) => {
-        const {onCodeFilled} = this.props
-        let newdigits = this.state.digits.slice()
+    onChangeText = (index, text) => {
+        const { onCodeFilled, pinCount } = this.props
+        const { digits } = this.state
+        let newdigits = digits.slice()
 
         const oldTextLength = newdigits[index] ? newdigits[index].length : 0
         const newTextLength = text.length
-        if (newTextLength - oldTextLength === this.props.pinCount) { //User copy pasted text in.
+        if (newTextLength - oldTextLength === pinCount) { // user pasted text in.
             newdigits = text.split("").slice(oldTextLength, newTextLength)
             this.setState( {digits: newdigits })
         } else {
@@ -165,39 +112,94 @@ export default class OTPInputView extends Component {
         }
 
         let result = newdigits.join("")
-        if (result.length >= this.props.pinCount) {
+        if (result.length >= pinCount) {
             onCodeFilled && onCodeFilled(result)
-            this._focusField(this.props.pinCount - 1)
-            this._blurAllFields()
+            this.focusField(pinCount - 1)
+            this.blurAllFields()
         } else {
-            if (text.length > 0 && index < this.props.pinCount - 1) {
-                this._focusField(index + 1)
+            if (text.length > 0 && index < pinCount - 1) {
+                this.focusField(index + 1)
             }
         }
     }
 
-    _onKeyPress = (index, key) => {
+    onKeyPressTextInput = (index, key) => {
+        const { digits } = this.state
         if(key === 'Backspace') {
-            if (!this.state.digits[index] && index > 0) {
-                this._onChangeText(index - 1, '')
-                this._focusField(index - 1)
+            if (!digits[index] && index > 0) {
+                this.onChangeText(index - 1, '')
+                this.focusField(index - 1)
             }
         }
     }
 
-    _focusField = (index) => {
-        this.fields[index].focus()
-        this.setState({
-            selectedIndex: index
-        })
+    focusField = (index) => {
+        if (index < this.fields.length) {
+            this.fields[index].focus()
+            this.setState({
+                selectedIndex: index
+            })
+        }
     }
 
-    _blurAllFields = () => {
-        for (field of this.fields) {
-            field.blur()
-        }
+    blurAllFields = () => {
+        this.fields.forEach(field => field.blur())
         this.setState({
             selectedIndex: -1,
         })
+    }
+
+    renderOneInputField = ( _ , index ) => {
+        const { codeInputFieldStyle, codeInputHighlightStyle } = this.props
+        const { defaultTextFieldStyle } = styles
+        const { selectedIndex, digits } = this.state
+        return (
+            <View pointerEvents="none" key={index + "view"}>
+                <TextInput
+                    underlineColorAndroid='rgba(0,0,0,0)'
+                    style={selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
+                    ref={ref => { this.fields[index] = ref }}
+                    onChangeText={text => {
+                        this.onChangeText(index, text)
+                    }}
+                    onKeyPress={({ nativeEvent: { key } }) => { this.onKeyPressTextInput(index, key) }}
+                    value={digits[index]}
+                    keyboardType="number-pad"
+                    textContentType= {isAutoFillSupported ? "oneTimeCode" : "none"}
+                    key={index}
+                    selectionColor="#00000000"
+                />
+            </View>
+        )
+    }
+
+    renderTextFields = () => {
+        const { pinCount } = this.props
+        const array = new Array(pinCount).fill(0)
+        return array.map(this.renderOneInputField)
+    }
+
+    render() {
+        const { pinCount, style } = this.props
+        const { digits } = this.state
+        return (
+            <View
+                style={style}
+            >
+                <TouchableWithoutFeedback
+                    style={{ width: '100%', height: '100%' }}
+                    onPress={() => {
+                        let filledPinCount = digits.filter((digit) => { return (digit !== null && digit !== undefined) }).length
+                        this.focusField(Math.min(filledPinCount, pinCount - 1))
+                    }}
+                >
+                    <View
+                        style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%', height: '100%' }}
+                    >
+                        {this.renderTextFields()}
+                    </View>
+                </TouchableWithoutFeedback>
+            </View>
+        );
     }
 }
