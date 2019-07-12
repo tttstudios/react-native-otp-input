@@ -1,3 +1,6 @@
 # ignore src
 
 example
+.github
+assets
+.gitattributes
