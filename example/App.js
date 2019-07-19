@@ -13,6 +13,10 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-nativ
 import OTPInputView from '@twotalltotems/react-native-otp-input'
 
 export default class App extends React.Component {
+  // state = {
+  //   code: "134"
+  // }
+
   render() {
     return (
       <View style={styles.container}>
@@ -23,10 +27,10 @@ export default class App extends React.Component {
         <OTPInputView
           style={{width: '80%', height: 200}}
           pinCount={4}
-          code=""
+          // You only need this if you want to inject the code.     
+          // code={this.state.code}
+          // key={`OTPInputView ${this.state.code}`}
           autoFocusOnLoad={true}
-          // codeInputFieldStyle={styles.borderStyleBase}
-          // codeInputHighlightStyle={styles.borderStyleHighLighted}
           codeInputFieldStyle={styles.underlineStyleBase}
           codeInputHighlightStyle={styles.underlineStyleHighLighted}
           onCodeFilled = {(code => {

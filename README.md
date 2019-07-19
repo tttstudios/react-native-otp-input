@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
 | Parameter   | required | Description |
 |-------------|----------|-------------|
 | pinCount    |    YES   |  Number of digits in the component |
-| code        |    NO    |  Besides providing an initial value, you can also enter this value using state or props. It will override the user input and reset the focus. For example, you can use it to hook up with the Android SMS Retriever API. |
+| code        |    NO    |  You can use this to override whatever user has typed. For example, you can use it to hook up with the Android SMS Retriever API. You should rarely need to use this one. But if you really need to, use it along with the key prop. Check our example app. |
 | codeInputFieldStyle | NO | The style of the input field which is NOT focused |
 | codeInputHighlightStyle | NO | The style of the input field which is focused |
 | autoFocusOnLoad | NO | Auto activate the input and bring up the keyboard when component is loaded |

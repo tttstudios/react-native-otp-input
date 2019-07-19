@@ -24,7 +24,7 @@ export default class OTPInputView extends Component {
     }
 
     state = {
-        digits: [],
+        digits: this.props.code.split("") || [],
         selectedIndex: 0,
     }
 
@@ -52,17 +52,6 @@ export default class OTPInputView extends Component {
             clearInterval(this._timer)
         }
         this.keyboardDidHideListener.remove()
-    }
-
-    componentWillReceiveProps(nextProps) {
-        const { digits } = this.state
-        if (nextProps.code !== digits) {
-            this.setState({
-                digits: nextProps.code.split(""),
-            }, () => {
-                this.focusField(0)
-            })
-        }
     }
 
     handleKeyboardDidHide = () => {
