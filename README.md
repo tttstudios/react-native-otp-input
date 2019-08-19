@@ -22,10 +22,9 @@ import OTPInputView from '@twotalltotems/react-native-otp-input'
 <OTPInputView
     style={{width: '80%', height: 200}}
     pinCount={4}
-    code=""
-    autoFocusOnLoad={true}
-    // codeInputFieldStyle={styles.borderStyleBase}
-    // codeInputHighlightStyle={styles.borderStyleHighLighted}
+    // code={this.state.code} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
+    // onCodeChanged = {code => { this.setState({code})}}
+    autoFocusOnLoad
     codeInputFieldStyle={styles.underlineStyleBase}
     codeInputHighlightStyle={styles.underlineStyleHighLighted}
     onCodeFilled = {(code => {
@@ -62,10 +61,11 @@ const styles = StyleSheet.create({
 | Parameter   | required | Description |
 |-------------|----------|-------------|
 | pinCount    |    YES   |  Number of digits in the component |
-| code        |    NO    |  You can use this to override whatever user has typed. For example, you can use it to hook up with the Android SMS Retriever API. You should rarely need to use this one. But if you really need to, use it along with the key prop. Check our example app. |
+| code        |    NO    |  You can use this library as a controlled / uncontrolled component by supplying this prop or not |
 | codeInputFieldStyle | NO | The style of the input field which is NOT focused |
 | codeInputHighlightStyle | NO | The style of the input field which is focused |
 | autoFocusOnLoad | NO | Auto activate the input and bring up the keyboard when component is loaded |
+| onCodeChanged | NO | Callback when the digits are changed |
 | onCodeFilled | NO | Callback when the last digit is entered |
 
 ## Notes

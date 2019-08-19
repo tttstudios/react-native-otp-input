@@ -27,9 +27,9 @@ export default class App extends React.Component {
         <OTPInputView
           style={{width: '80%', height: 200}}
           pinCount={4}
-          code={this.state.code}
-          onCodeChanged = {code => { this.setState({code})}}          
-          autoFocusOnLoad={true}
+          // code={this.state.code} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
+          // onCodeChanged = {code => { this.setState({code})}}
+          autoFocusOnLoad
           codeInputFieldStyle={styles.underlineStyleBase}
           codeInputHighlightStyle={styles.underlineStyleHighLighted}
           onCodeFilled = {(code => {
