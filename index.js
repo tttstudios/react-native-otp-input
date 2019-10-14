@@ -12,7 +12,7 @@ export default class OTPInputView extends Component {
         onCodeFilled: PropTypes.func,
         onCodeChanged: PropTypes.func,
         autoFocusOnLoad: PropTypes.bool,
-        code: PropTypes.string, 
+        code: PropTypes.string,
     }
 
     static defaultProps = {
@@ -72,7 +72,7 @@ export default class OTPInputView extends Component {
     }
 
     handleKeyboardDidHide = () => {
-        this.blurAllFields() 
+        this.blurAllFields()
     }
 
     notifyCodeChanged = () => {
@@ -85,17 +85,19 @@ export default class OTPInputView extends Component {
     }
 
     checkPinCodeFromClipBoard = () => {
-        const { pinCount } = this.props
-        Clipboard.getString().then(code => {
-            if (this.hasCheckedClipBoard && code.length === pinCount && (this.clipBoardCode !== code)) {
+        const { pinCount, onCodeFilled } = this.props
+        const regexp = new RegExp(`(\\d{${pinCount}})`, 'g')
+        Clipboard.getString().then(string => {
+            const otp = regexp.exec(string);
+            if (this.hasCheckedClipBoard && otp && (this.clipBoardCode !== otp[0])) {
                 this.setState({
-                    digits: code.split(""),
+                    digits: otp[0].split(""),
                 }, () => {
                     this.blurAllFields()
-                    this.notifyCodeChanged()
+                    onCodeFilled(otp[0]);
                 })
             }
-            this.clipBoardCode = code
+            this.clipBoardCode = otp[0]
             this.hasCheckedClipBoard = true
         }).catch(e => {
         })
