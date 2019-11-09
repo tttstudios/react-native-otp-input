@@ -12,7 +12,8 @@ export default class OTPInputView extends Component {
         onCodeFilled: PropTypes.func,
         onCodeChanged: PropTypes.func,
         autoFocusOnLoad: PropTypes.bool,
-        code: PropTypes.string, 
+        code: PropTypes.string,
+        secureTextEntry: PropTypes.bool,
     }
 
     static defaultProps = {
@@ -21,6 +22,7 @@ export default class OTPInputView extends Component {
         codeInputHighlightStyle: null,
         onCodeFilled: null,
         autoFocusOnLoad: true,
+        secureTextEntry: false
     }
 
     fields = []
@@ -171,7 +173,7 @@ export default class OTPInputView extends Component {
     }
 
     renderOneInputField = ( _ , index ) => {
-        const { codeInputFieldStyle, codeInputHighlightStyle } = this.props
+        const { codeInputFieldStyle, codeInputHighlightStyle, secureTextEntry } = this.props
         const { defaultTextFieldStyle } = styles
         const { selectedIndex, digits } = this.state
         return (
@@ -189,6 +191,7 @@ export default class OTPInputView extends Component {
                     textContentType= {isAutoFillSupported ? "oneTimeCode" : "none"}
                     key={index}
                     selectionColor="#00000000"
+                    secureTextEntry={secureTextEntry}
                 />
             </View>
         )
