@@ -67,13 +67,14 @@ const styles = StyleSheet.create({
 | autoFocusOnLoad | NO | Auto activate the input and bring up the keyboard when component is loaded |
 | onCodeChanged | NO | Callback when the digits are changed |
 | onCodeFilled | NO | Callback when the last digit is entered |
+| secureTextEntry | NO | Hide contents of text fields |
 
 ## Notes
 The iOS input suggestion requires React Native 0.58+ and works for iOS 12 and above. 
 
 On Android, it will be auto filled when you press the copy code button in the notification bar (see above GIF). It will do so  only if the code is sent after the view is loaded. So make sure you request the code **AFTER** this view is loaded.
 
-If you are interested in Android SMS Retriever API, I would suggest @Faizal's repo [React-Native-OTP-Verify](https://github.com/faizalshap/react-native-otp-verify). It looks pretty cool and it should be straight-forward to use React-Native-OTP-Verify along with this library.
+If you are interested in Android SMS Retriever API, we would suggest @Faizal's repo [React-Native-OTP-Verify](https://github.com/faizalshap/react-native-otp-verify). It looks pretty cool and it should be straight-forward to use React-Native-OTP-Verify along with this library.
 
 ## Roadmap
 * [ ] Typescript
