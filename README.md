@@ -75,9 +75,9 @@ On Android, it will be auto filled when you press the copy code button in the no
 
 If you are interested in Android SMS Retriever API, I would suggest @Faizal's repo [React-Native-OTP-Verify](https://github.com/faizalshap/react-native-otp-verify). It looks pretty cool and it should be straight-forward to use React-Native-OTP-Verify along with this library.
 
-## RoadMap
+## Roadmap
 * [ ] Typescript
-* [ ] Add tests
+* [ ] Add unit tests
 
 ## Contributors
 <table>
@@ -113,11 +113,6 @@ If you are interested in Android SMS Retriever API, I would suggest @Faizal's re
         	<img src="https://avatars3.githubusercontent.com/u/10748192?s=460&v=4" width="60px;" style="border-radius: 50%;"/>
         	<br />
         	<sub><a href="https://github.com/MitchellGanton">Mitchell Ganton</a></sub> <br />
-        </th>
-        <th border="0" style="border-left: none; border-right: none;">
-        	<img src="https://avatars0.githubusercontent.com/u/36147173?s=460&v=4" width="60px;" style="border-radius: 50%;"/>
-        	<br />
-        	<sub><a href="https://github.com/gordonzhang17">Gordan Zhang</a></sub> <br />
         </th>
     </tr>
 </table>
