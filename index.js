@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, TextInput, TouchableWithoutFeedback, Clipboard, Keyboard, Platform } from 'react-native'
+import { View, TextInput, TouchableWithoutFeedback, Clipboard, Keyboard, Platform, I18nManager, } from 'react-native'
 import PropTypes from 'prop-types'
 import styles from './styles'
 import { isAutoFillSupported } from './helpers/device'
@@ -218,7 +218,7 @@ export default class OTPInputView extends Component {
                     }}
                 >
                     <View
-                        style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%', height: '100%' }}
+                        style={{ flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%', height: '100%' }}
                     >
                         {this.renderTextFields()}
                     </View>
