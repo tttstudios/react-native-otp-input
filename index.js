@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, TextInput, TouchableWithoutFeedback, Clipboard, Keyboard, Platform } from 'react-native'
+import { View, TextInput, TouchableWithoutFeedback, Clipboard, Keyboard, Platform, I18nManager, } from 'react-native'
 import PropTypes from 'prop-types'
 import styles from './styles'
 import { isAutoFillSupported } from './helpers/device'
@@ -12,7 +12,9 @@ export default class OTPInputView extends Component {
         onCodeFilled: PropTypes.func,
         onCodeChanged: PropTypes.func,
         autoFocusOnLoad: PropTypes.bool,
-        code: PropTypes.string, 
+        code: PropTypes.string,
+        secureTextEntry: PropTypes.bool,
+        keyboardType: PropTypes.string,
         clearInputs:PropTypes.bool,
     }
 
@@ -22,6 +24,8 @@ export default class OTPInputView extends Component {
         codeInputHighlightStyle: null,
         onCodeFilled: null,
         autoFocusOnLoad: true,
+        secureTextEntry: false,
+        keyboardType: "number-pad",
         clearInputs:false
     }
 
@@ -74,7 +78,7 @@ export default class OTPInputView extends Component {
     }
 
     handleKeyboardDidHide = () => {
-        this.blurAllFields() 
+        this.blurAllFields()
     }
 
     notifyCodeChanged = () => {
@@ -111,11 +115,11 @@ export default class OTPInputView extends Component {
         const newTextLength = text.length
         if (newTextLength - oldTextLength === pinCount) { // user pasted text in.
             newdigits = text.split("").slice(oldTextLength, newTextLength)
-            this.setState( {digits: newdigits }, this.notifyCodeChanged)
+            this.setState({ digits: newdigits }, this.notifyCodeChanged)
         } else {
             if (text.length === 0) {
                 if (newdigits.length > 0) {
-                    newdigits = newdigits.slice(0, newdigits.length-1)
+                    newdigits = newdigits.slice(0, newdigits.length - 1)
                 }
             } else {
                 text.split("").forEach((value) => {
@@ -141,7 +145,7 @@ export default class OTPInputView extends Component {
 
     handleKeyPressTextInput = (index, key) => {
         const digits = this.getDigits()
-        if(key === 'Backspace') {
+        if (key === 'Backspace') {
             if (!digits[index] && index > 0) {
                 this.handleChangeText(index - 1, '')
                 this.focusField(index - 1)
@@ -165,6 +169,7 @@ export default class OTPInputView extends Component {
         })
     }
 
+
     clearAllFields =()=>{
         const {clearInputs, code} = this.props;
         if(clearInputs && code === ""){
@@ -172,8 +177,8 @@ export default class OTPInputView extends Component {
         }
     }
 
-    renderOneInputField = ( _ , index ) => {
-        const { codeInputFieldStyle, codeInputHighlightStyle } = this.props
+    renderOneInputField = (_, index) => {
+        const { codeInputFieldStyle, codeInputHighlightStyle, secureTextEntry, keyboardType } = this.props
         const { defaultTextFieldStyle } = styles
         const { selectedIndex, digits } = this.state
         const {clearInputs} = this.props
@@ -181,7 +186,7 @@ export default class OTPInputView extends Component {
             <View pointerEvents="none" key={index + "view"}>
                 <TextInput
                     underlineColorAndroid='rgba(0,0,0,0)'
-                    style={selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
+                    style={selectedIndex === index || digits[index] ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
                     ref={ref => { this.fields[index] = ref }}
                     onChangeText={text => {
                         this.handleChangeText(index, text)
@@ -190,6 +195,7 @@ export default class OTPInputView extends Component {
                     value={!clearInputs ? digits[index]: ""}
                     keyboardType="number-pad"
                     textContentType= {isAutoFillSupported ? "oneTimeCode" : "none"}
+
                     key={index}
                     selectionColor="#00000000"
                 />
@@ -223,7 +229,7 @@ export default class OTPInputView extends Component {
                     }}
                 >
                     <View
-                        style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%', height: '100%' }}
+                        style={{ flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%', height: '100%' }}
                     >
                         {this.renderTextFields()}
                     </View>
