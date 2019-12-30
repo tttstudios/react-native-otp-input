@@ -41,11 +41,11 @@ export default class OTPInputView extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-         const { code } = this.props
-         if (nextProps.code !== code) {
-             this.setState({ digits: (nextProps.code === undefined ? [] : nextProps.code.split("")) })
-         }
-     }
+        const { code } = this.props
+        if (nextProps.code !== code) {
+            this.setState({ digits: (nextProps.code === undefined ? [] : nextProps.code.split("")) })
+        }
+    }
 
     componentDidMount() {
         this.copyCodeFromClipBoardOnAndroid()
