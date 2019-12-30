@@ -172,7 +172,7 @@ export default class OTPInputView extends Component {
 
     clearAllFields = () => {
         const { clearInputs, code } = this.props;
-        if (clearInputs && code === ""){
+        if (clearInputs && code === "") {
             this.setState({ digits: code })
         }
     }
