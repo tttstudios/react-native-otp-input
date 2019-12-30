@@ -15,7 +15,7 @@ export default class OTPInputView extends Component {
         code: PropTypes.string,
         secureTextEntry: PropTypes.bool,
         keyboardType: PropTypes.string,
-        clearInputs:PropTypes.bool,
+        clearInputs: PropTypes.bool
     }
 
     static defaultProps = {
@@ -26,7 +26,7 @@ export default class OTPInputView extends Component {
         autoFocusOnLoad: true,
         secureTextEntry: false,
         keyboardType: "number-pad",
-        clearInputs:false
+        clearInputs: false
     }
 
     fields = []
@@ -170,10 +170,10 @@ export default class OTPInputView extends Component {
     }
 
 
-    clearAllFields =()=>{
-        const {clearInputs, code} = this.props;
-        if(clearInputs && code === ""){
-            this.setState({digits:code})
+    clearAllFields = () => {
+        const { clearInputs, code } = this.props;
+        if (clearInputs && code === ""){
+            this.setState({ digits: code })
         }
     }
 
@@ -181,7 +181,7 @@ export default class OTPInputView extends Component {
         const { codeInputFieldStyle, codeInputHighlightStyle, secureTextEntry, keyboardType } = this.props
         const { defaultTextFieldStyle } = styles
         const { selectedIndex, digits } = this.state
-        const {clearInputs} = this.props
+        const { clearInputs } = this.props
         return (
             <View pointerEvents="none" key={index + "view"}>
                 <TextInput
@@ -192,12 +192,13 @@ export default class OTPInputView extends Component {
                         this.handleChangeText(index, text)
                     }}
                     onKeyPress={({ nativeEvent: { key } }) => { this.handleKeyPressTextInput(index, key) }}
-                    value={!clearInputs ? digits[index]: ""}
+                    value={ !clearInputs ? digits[index]: "" }
                     keyboardType="number-pad"
                     textContentType= {isAutoFillSupported ? "oneTimeCode" : "none"}
 
                     key={index}
                     selectionColor="#00000000"
+                    secureTextEntry={secureTextEntry}
                 />
             </View>
         )
@@ -219,10 +220,10 @@ export default class OTPInputView extends Component {
                 <TouchableWithoutFeedback
                     style={{ width: '100%', height: '100%' }}
                     onPress={() => {
-                        if(!clearInputs){
-                        let filledPinCount = digits.filter((digit) => { return (digit !== null && digit !== undefined) }).length
-                        this.focusField(Math.min(filledPinCount, pinCount - 1))
-                        }else{
+                        if (!clearInputs) {
+                            let filledPinCount = digits.filter((digit) => { return (digit !== null && digit !== undefined) }).length
+                            this.focusField(Math.min(filledPinCount, pinCount - 1))
+                        } else {
                             this.clearAllFields();
                             this.focusField(0)
                         }
