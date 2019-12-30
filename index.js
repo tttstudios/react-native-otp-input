@@ -195,7 +195,6 @@ export default class OTPInputView extends Component {
                     value={ !clearInputs ? digits[index]: "" }
                     keyboardType={keyboardType}
                     textContentType={isAutoFillSupported ? "oneTimeCode" : "none"}
-
                     key={index}
                     selectionColor="#00000000"
                     secureTextEntry={secureTextEntry}
