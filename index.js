@@ -193,8 +193,8 @@ export default class OTPInputView extends Component {
                     }}
                     onKeyPress={({ nativeEvent: { key } }) => { this.handleKeyPressTextInput(index, key) }}
                     value={ !clearInputs ? digits[index]: "" }
-                    keyboardType="number-pad"
-                    textContentType= {isAutoFillSupported ? "oneTimeCode" : "none"}
+                    keyboardType={keyboardType}
+                    textContentType={isAutoFillSupported ? "oneTimeCode" : "none"}
 
                     key={index}
                     selectionColor="#00000000"
