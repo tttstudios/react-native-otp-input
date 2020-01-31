@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
 | onCodeFilled | NO | Callback when the last digit is entered |
 | secureTextEntry | NO | Hide contents of text fields |
 | keyboardType | NO | Keyboard type |
+| clearInputs | NO | Clear inputs after entering code |
 
 ## Notes
 The iOS input suggestion requires React Native 0.58+ and works for iOS 12 and above. 
