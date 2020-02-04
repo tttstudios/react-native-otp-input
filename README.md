@@ -70,6 +70,8 @@ const styles = StyleSheet.create({
 | secureTextEntry | NO | Hide contents of text fields |
 | keyboardType | NO | Keyboard type |
 | clearInputs | NO | Clear inputs after entering code |
+| placeholderCharacter | NO | The character/string that will be used as placeholder in the individual code input fields |
+| placeholderTextColor | NO | Color of the placeholderCharacter |
 
 ## Notes
 The iOS input suggestion requires React Native 0.58+ and works for iOS 12 and above. 
