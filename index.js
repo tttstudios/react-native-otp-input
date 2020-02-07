@@ -193,7 +193,7 @@ export default class OTPInputView extends Component {
             <View pointerEvents="none" key={index + "view"}>
                 <TextInput
                     underlineColorAndroid='rgba(0,0,0,0)'
-                    style={selectedIndex === index || digits[index] ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
+                    style={selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
                     ref={ref => { this.fields[index] = ref }}
                     onChangeText={text => {
                         this.handleChangeText(index, text)
