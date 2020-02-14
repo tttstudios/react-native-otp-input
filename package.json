@@ -3,11 +3,25 @@
   "version": "1.1.6",
   "description": "is a tiny JS library for one time passcode (OTP). Supports smart input suggestion on iOS and code autofill on Android (it will be filled when you press the copy button on the SMS notification bar)",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "react-native",
+    "setupFilesAfterEnv": [
+      "jest-enzyme"
+    ],
+    "testEnvironment": "enzyme",
+    "testEnvironmentOptions": {
+      "enzymeAdapter": "react16"
+    },
+    "testMatch": [
+      "<rootDir>/__tests__/*.test.js"
+    ],
+    "transform": {
+      "^.+\\.jsx$": "babel-jest"
+    }
   },
   "repository": {
     "type": "git",
@@ -31,5 +45,17 @@
     "Anson Yao <yaoenxin@gmail.com> (https://github.com/ansonyao)",
     "Felipe Peña <felipe@penya.cl> (http://felipe.penya.cl)"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "babel-jest": "^25.1.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "jest": "^25.1.0",
+    "jest-environment-enzyme": "^7.1.2",
+    "jest-enzyme": "^7.1.2",
+    "react": "16",
+    "react-dom": "^16.12.0",
+    "react-native": "^0.61.5"
+  }
 }

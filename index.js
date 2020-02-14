@@ -195,7 +195,7 @@ export default class OTPInputView extends Component {
         const { clearInputs, placeholderCharacter, placeholderTextColor } = this.props
         const { color: defaultPlaceholderTextColor } = { ...defaultTextFieldStyle, ...codeInputFieldStyle }
         return (
-            <View pointerEvents="none" key={index + "view"}>
+            <View pointerEvents="none" key={index + "view"} testID="inputSlotView">
                 <TextInput
                     underlineColorAndroid='rgba(0,0,0,0)'
                     style={selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
@@ -228,6 +228,7 @@ export default class OTPInputView extends Component {
         const digits = this.getDigits()
         return (
             <View
+                testID="OTPInputView"
                 style={style}
             >
                 <TouchableWithoutFeedback
