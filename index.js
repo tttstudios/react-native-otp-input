@@ -197,6 +197,7 @@ export default class OTPInputView extends Component {
         return (
             <View pointerEvents="none" key={index + "view"} testID="inputSlotView">
                 <TextInput
+                    testID="textInput"
                     underlineColorAndroid='rgba(0,0,0,0)'
                     style={selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
                     ref={ref => { this.fields[index] = ref }}
