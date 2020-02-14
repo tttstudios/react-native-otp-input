@@ -111,7 +111,8 @@ export default class OTPInputView extends Component {
                     digits: otp[0].split(""),
                 }, () => {
                     this.blurAllFields()
-                    onCodeFilled(otp[0]);
+                    onCodeFilled && onCodeFilled(otp[0]);
+                    this.notifyCodeChanged()
                 })
             }
             this.clipBoardCode = otp[0]
