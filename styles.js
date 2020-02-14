@@ -7,6 +7,7 @@ export default styles = StyleSheet.create({
         borderColor : 'rgba(226, 226, 226, 1)', 
         borderWidth : 1,
         borderRadius : 2, 
-        textAlign : 'center'
+        textAlign : 'center',
+        color: 'rgba(226, 226, 226, 1)', 
     },
 })
