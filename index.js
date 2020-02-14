@@ -29,7 +29,8 @@ export default class OTPInputView extends Component {
         secureTextEntry: false,
         keyboardType: "number-pad",
         clearInputs: false,
-        placeholderCharacter: "-"
+        placeholderCharacter: "",
+        placeholderTextColor: null,
     }
 
     fields = []
@@ -192,6 +193,7 @@ export default class OTPInputView extends Component {
         const { defaultTextFieldStyle } = styles
         const { selectedIndex, digits } = this.state
         const { clearInputs, placeholderCharacter, placeholderTextColor } = this.props
+        const { color: defaultPlaceholderTextColor } = { ...defaultTextFieldStyle, ...codeInputFieldStyle }
         return (
             <View pointerEvents="none" key={index + "view"}>
                 <TextInput
@@ -209,7 +211,7 @@ export default class OTPInputView extends Component {
                     selectionColor="#00000000"
                     secureTextEntry={secureTextEntry}
                     placeholder={placeholderCharacter}
-                    placeholderTextColor={placeholderTextColor}
+                    placeholderTextColor={placeholderTextColor || defaultPlaceholderTextColor}
                 />
             </View>
         )
