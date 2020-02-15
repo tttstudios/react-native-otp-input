@@ -84,12 +84,13 @@ If you are interested in Android SMS Retriever API, we would suggest @Faizal's r
 
 ## Roadmap
 * [ ] Typescript
-* [ ] Add unit tests
+* [x] Add basic unit tests
+* [ ] Add integration tests
 
 ## Contributors
 <table>
     <tr border="0" style="border: none; ">
-	<th border="0" style="border-left: none; border-right: none;">
+	      <th border="0" style="border-left: none; border-right: none;">
         	<img src="https://avatars1.githubusercontent.com/u/1243479?s=400&v=4" width="60px;" style="border-radius: 50%;"/>
         	<br />
         	<sub><a href="https://github.com/ansonyao">Anson Yao</a></sub> <br />
