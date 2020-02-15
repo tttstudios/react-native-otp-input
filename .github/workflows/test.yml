@@ -1,0 +1,26 @@
+name: Tests
+
+on:
+    push:
+      branches: 
+        - master
+    pull_request:
+      branches:
+        - master
+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    container:
+      image: node:13.4.0
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run Jest
+      uses: stefanoeb/jest-action@1.0.2
+    - name: Run Unit Test
+      run: npm install --only=dev && npm test
+      
