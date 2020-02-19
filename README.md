@@ -1,6 +1,8 @@
 ![PaginatableList](https://raw.githubusercontent.com/Twotalltotems/react-native-otp-input/master/assets/otp_banner.jpg)
 # React Native OTP Input
 
+![Tests](https://github.com/Twotalltotems/react-native-otp-input/workflows/Tests/badge.svg)
+
 **@twotalltotems/react-native-otp-input** is a tiny Javascript library which provides an elegant UI for the end user to input one time passcode (OTP). It handles the input suggestion on iOS when the OTP SMS is received. For Android, it will autofill when the user presses the copy button on the SMS notification bar. It also features a carefully crafted flow to handle edge cases for volatile user gestures. We provide default UI, but you can always customize the appearance as you like.
 
 ![demo.gif](https://s3.ca-central-1.amazonaws.com/tttevents/iosvideo.gif)
@@ -82,12 +84,13 @@ If you are interested in Android SMS Retriever API, we would suggest @Faizal's r
 
 ## Roadmap
 * [ ] Typescript
-* [ ] Add unit tests
+* [x] Add basic unit tests
+* [ ] Add integration tests
 
 ## Contributors
 <table>
     <tr border="0" style="border: none; ">
-	<th border="0" style="border-left: none; border-right: none;">
+	      <th border="0" style="border-left: none; border-right: none;">
         	<img src="https://avatars1.githubusercontent.com/u/1243479?s=400&v=4" width="60px;" style="border-radius: 50%;"/>
         	<br />
         	<sub><a href="https://github.com/ansonyao">Anson Yao</a></sub> <br />

@@ -195,42 +195,35 @@ export default class OTPInputView extends Component {
     }
   };
 
-  renderOneInputField = (_, index) => {
-    const { codeInputFieldStyle, codeInputHighlightStyle, secureTextEntry, keyboardType } = this.props;
-    const { defaultTextFieldStyle } = styles;
-    const { selectedIndex, digits } = this.state;
-    const { clearInputs, placeholderCharacter, placeholderTextColor } = this.props;
-    const { color: defaultPlaceholderTextColor } = { ...defaultTextFieldStyle, ...codeInputFieldStyle };
-    return (
-      <View pointerEvents="none" key={index + 'view'}>
-        <TextInput
-          underlineColorAndroid="rgba(0,0,0,0)"
-          style={
-            selectedIndex === index
-              ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle]
-              : [defaultTextFieldStyle, codeInputFieldStyle]
-          }
-          ref={ref => {
-            this.fields[index] = ref;
-          }}
-          onChangeText={text => {
-            this.handleChangeText(index, text);
-          }}
-          onKeyPress={({ nativeEvent: { key } }) => {
-            this.handleKeyPressTextInput(index, key);
-          }}
-          value={!clearInputs ? digits[index] : ''}
-          keyboardType={keyboardType}
-          textContentType={isAutoFillSupported ? 'oneTimeCode' : 'none'}
-          key={index}
-          selectionColor="#00000000"
-          secureTextEntry={secureTextEntry}
-          placeholder={placeholderCharacter}
-          placeholderTextColor={placeholderTextColor || defaultPlaceholderTextColor}
-        />
-      </View>
-    );
-  };
+    renderOneInputField = (_, index) => {
+        const { codeInputFieldStyle, codeInputHighlightStyle, secureTextEntry, keyboardType } = this.props
+        const { defaultTextFieldStyle } = styles
+        const { selectedIndex, digits } = this.state
+        const { clearInputs, placeholderCharacter, placeholderTextColor } = this.props
+        const { color: defaultPlaceholderTextColor } = { ...defaultTextFieldStyle, ...codeInputFieldStyle }
+        return (
+            <View pointerEvents="none" key={index + "view"} testID="inputSlotView">
+                <TextInput
+                    testID="textInput"
+                    underlineColorAndroid='rgba(0,0,0,0)'
+                    style={selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
+                    ref={ref => { this.fields[index] = ref }}
+                    onChangeText={text => {
+                        this.handleChangeText(index, text)
+                    }}
+                    onKeyPress={({ nativeEvent: { key } }) => { this.handleKeyPressTextInput(index, key) }}
+                    value={ !clearInputs ? digits[index]: "" }
+                    keyboardType={keyboardType}
+                    textContentType={isAutoFillSupported ? "oneTimeCode" : "none"}
+                    key={index}
+                    selectionColor="#00000000"
+                    secureTextEntry={secureTextEntry}
+                    placeholder={placeholderCharacter}
+                    placeholderTextColor={placeholderTextColor || defaultPlaceholderTextColor}
+                />
+            </View>
+        )
+    }
 
   renderTextFields = () => {
     const { pinCount } = this.props;
@@ -238,38 +231,33 @@ export default class OTPInputView extends Component {
     return array.map(this.renderOneInputField);
   };
 
-  render() {
-    const { pinCount, style, clearInputs } = this.props;
-    const digits = this.getDigits();
-    return (
-      <View style={style}>
-        <TouchableWithoutFeedback
-          style={{ width: '100%', height: '100%' }}
-          onPress={() => {
-            if (!clearInputs) {
-              let filledPinCount = digits.filter(digit => {
-                return digit !== null && digit !== undefined;
-              }).length;
-              this.focusField(Math.min(filledPinCount, pinCount - 1));
-            } else {
-              this.clearAllFields();
-              this.focusField(0);
-            }
-          }}
-        >
-          <View
-            style={{
-              flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              width: '100%',
-              height: '100%',
-            }}
-          >
-            {this.renderTextFields()}
-          </View>
-        </TouchableWithoutFeedback>
-      </View>
-    );
-  }
+    render() {
+        const { pinCount, style, clearInputs } = this.props
+        const digits = this.getDigits()
+        return (
+            <View
+                testID="OTPInputView"
+                style={style}
+            >
+                <TouchableWithoutFeedback
+                    style={{ width: '100%', height: '100%' }}
+                    onPress={() => {
+                        if (!clearInputs) {
+                            let filledPinCount = digits.filter((digit) => { return (digit !== null && digit !== undefined) }).length
+                            this.focusField(Math.min(filledPinCount, pinCount - 1))
+                        } else {
+                            this.clearAllFields();
+                            this.focusField(0)
+                        }
+                    }}
+                >
+                    <View
+                        style={{ flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%', height: '100%' }}
+                    >
+                        {this.renderTextFields()}
+                    </View>
+                </TouchableWithoutFeedback>
+            </View>
+        );
+    }
 }
