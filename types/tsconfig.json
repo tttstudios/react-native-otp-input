@@ -12,5 +12,5 @@
     "noEmit": true,
     "forceConsistentCasingInFileNames": true
   },
-  "files": ["index.d.ts", "react-native-otp-input-tests.tsx"]
+  "files": ["index.d.ts"]
 }
