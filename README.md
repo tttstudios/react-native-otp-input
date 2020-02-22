@@ -21,6 +21,19 @@ It does not have additional dependencies except for React Native itself.
 ```
 import OTPInputView from '@twotalltotems/react-native-otp-input'
 
+...
+
+<OTPInputView pinCount={4} />
+
+```
+
+## More Advanced Usage
+
+```
+import OTPInputView from '@twotalltotems/react-native-otp-input'
+
+...
+
 <OTPInputView
     style={{width: '80%', height: 200}}
     pinCount={4}
@@ -83,7 +96,8 @@ On Android, it will be auto filled when you press the copy code button in the no
 If you are interested in Android SMS Retriever API, we would suggest @Faizal's repo [React-Native-OTP-Verify](https://github.com/faizalshap/react-native-otp-verify). It looks pretty cool and it should be straight-forward to use React-Native-OTP-Verify along with this library.
 
 ## Roadmap
-* [ ] Typescript
+* [x] Typescript definition file
+* [ ] Typescript implementation
 * [x] Add basic unit tests
 * [ ] Add integration tests
 
