@@ -251,6 +251,6 @@ export default class OTPInputView extends Component {
                     </View>
                 </TouchableWithoutFeedback>
             </View>
-        )
+        );
     }
 }

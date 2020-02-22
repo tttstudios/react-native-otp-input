@@ -10,32 +10,23 @@ declare module '@twotalltotems/react-native-otp-input' {
    * There are 4 main types:
    * default, email-address, number-pad and phone-pad
    */
-  export type KeyboardType = 'default' | 'email-address' | 'number-pad' | 'phone-pad';
+  type KeyboardType = 'default' | 'email-address' | 'number-pad' | 'phone-pad';
 
-  /**
-   *
-   *
-   * @interface InputProps
-   */
   export interface InputProps {
     /**
-     * Number of Pins in the OTP
+     * Digits of pins in the OTP
      */
     pinCount: number;
     /**
-     * Style of the OTP
-     */
-    style?: object;
-    /**
-     * style of the inuput field
+     * Style of the inuput fields
      */
     codeInputFieldStyle?: object;
     /**
-     * Style of highlight for inputs
+     * Style of highlighted status for input fields
      */
     codeInputHighlightStyle?: object;
     /**
-     * callback function
+     * Callback function
      * Trigger when all fields of the OTP has been filled
      *
      * @param code The verification code
@@ -49,26 +40,29 @@ declare module '@twotalltotems/react-native-otp-input' {
      */
     onCodeChanged?: (code: string) => void;
     /**
-     *
+     * If keyboard is automatically brought up when OTP is loaded.
      */
     autoFocusOnLoad?: boolean;
     /**
-     * This variable store the code that has been entered
+     * Initial pin code
      */
     code?: string;
     /**
-     *
+     * Secure input text
      */
     secureTextEntry?: boolean;
     /**
      * Type of the keyboard
-     * The type is KeyboardType
      */
     keyboardType?: KeyboardType;
     /**
-     *
+     * Placeholder character to fill all inputs when the OTP is empty
      */
-    clearInputs?: boolean;
+    placeholderCharacter?: string;
+    /**
+     * Placeholder text color of inputs
+     */
+    placeholderTextColor?: string;
   }
 
   export default class OTPInputView extends React.Component<InputProps, any> {
