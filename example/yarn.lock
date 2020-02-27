@@ -569,9 +569,10 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@twotalltotems/react-native-otp-input@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@twotalltotems/react-native-otp-input/-/react-native-otp-input-1.1.0.tgz#33d238223052e1328cea70b6877be5f51e178590"
+"@twotalltotems/react-native-otp-input@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@twotalltotems/react-native-otp-input/-/react-native-otp-input-1.2.1.tgz#b40ebea56c08ce6787c6e78d40f254fe15634e5e"
+  integrity sha512-RtNjlz5+vE2wLsmlDDbfJzMGfGuiYJkevR8xUl6OskVxg/ZJzdzRZi/CEyvWS1IXSVySB3ApLru88ZVcBhehjg==
 
 abab@^2.0.0:
   version "2.0.0"

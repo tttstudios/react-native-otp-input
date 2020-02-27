@@ -63,6 +63,10 @@ declare module '@twotalltotems/react-native-otp-input' {
      * Placeholder text color of inputs
      */
     placeholderTextColor?: string;
+    /**
+     * Style of the OTP container view
+     */
+    style?: object;
   }
 
   export default class OTPInputView extends React.Component<InputProps, any> {
