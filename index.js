@@ -17,7 +17,8 @@ export default class OTPInputView extends Component {
         keyboardType: PropTypes.string,
         clearInputs: PropTypes.bool,
         placeholderCharacter: PropTypes.string,
-        placeholderTextColor: PropTypes.string
+        placeholderTextColor: PropTypes.string,
+        style: PropTypes.object,
     }
 
     static defaultProps = {
@@ -31,6 +32,7 @@ export default class OTPInputView extends Component {
         clearInputs: false,
         placeholderCharacter: "",
         placeholderTextColor: null,
+        style: null,
     }
 
     fields = []

@@ -7,7 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@twotalltotems/react-native-otp-input": "^1.1.0",
+    "@twotalltotems/react-native-otp-input": "^1.2.1",
     "react": "16.6.3",
     "react-native": "0.58.4"
   },
