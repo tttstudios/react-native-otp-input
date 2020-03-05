@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export default styles = StyleSheet.create({
+const OTPInputStyles = StyleSheet.create({
     defaultTextFieldStyle : {
         width : 45, 
         height : 45, 
@@ -11,3 +11,5 @@ export default styles = StyleSheet.create({
         color: 'rgba(226, 226, 226, 1)', 
     },
 })
+
+export default OTPInputStyles
