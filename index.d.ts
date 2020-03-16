@@ -67,6 +67,10 @@ declare module '@twotalltotems/react-native-otp-input' {
      * Style of the OTP container view
      */
     style?: object;
+    /**
+     * The highlight (and cursor on iOS) color of the text input.
+     */
+    selectionColor?: string;
   }
 
   export default class OTPInputView extends React.Component<InputProps, any> {
