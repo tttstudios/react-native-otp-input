@@ -19,6 +19,7 @@ export default class OTPInputView extends Component {
         placeholderCharacter: PropTypes.string,
         placeholderTextColor: PropTypes.string,
         style: PropTypes.object,
+        selectionColor: PropTypes.string,
     }
 
     static defaultProps = {
@@ -33,6 +34,7 @@ export default class OTPInputView extends Component {
         placeholderCharacter: "",
         placeholderTextColor: null,
         style: null,
+        selectionColor: '#000',
     }
 
     fields = []
@@ -195,7 +197,7 @@ export default class OTPInputView extends Component {
     }
 
     renderOneInputField = (_, index) => {
-        const { codeInputFieldStyle, codeInputHighlightStyle, secureTextEntry, keyboardType } = this.props
+        const { codeInputFieldStyle, codeInputHighlightStyle, secureTextEntry, keyboardType, selectionColor } = this.props
         const { defaultTextFieldStyle } = styles
         const { selectedIndex, digits } = this.state
         const { clearInputs, placeholderCharacter, placeholderTextColor } = this.props
@@ -215,7 +217,7 @@ export default class OTPInputView extends Component {
                     keyboardType={keyboardType}
                     textContentType={isAutoFillSupported ? "oneTimeCode" : "none"}
                     key={index}
-                    selectionColor="#00000000"
+                    selectionColor={selectionColor}
                     secureTextEntry={secureTextEntry}
                     placeholder={placeholderCharacter}
                     placeholderTextColor={placeholderTextColor || defaultPlaceholderTextColor}
