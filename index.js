@@ -113,6 +113,7 @@ export default class OTPInputView extends Component {
                 }, () => {
                     this.blurAllFields()
                     this.notifyCodeChanged()
+                    onCodeFilled && onCodeFilled(code)
                 })
             }
             this.clipBoardCode = code
