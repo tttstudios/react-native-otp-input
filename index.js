@@ -136,8 +136,10 @@ export default class OTPInputView extends Component {
                 }
             } else {
                 text.split("").forEach((value) => {
-                    newdigits[index] = value
-                    index += 1
+                  if(index < pinCount) {
+                    newdigits[index] = value;
+                    index += 1;
+                  }
                 })
                 index -= 1
             }
