@@ -104,14 +104,16 @@ export default class OTPInputView extends Component {
     }
 
     checkPinCodeFromClipBoard = () => {
-        const { pinCount } = this.props
+        const { pinCount, onCodeFilled } = this.props
+        const regexp = new RegExp(`^\\d{${pinCount}}$`)
         Clipboard.getString().then(code => {
-            if (this.hasCheckedClipBoard && code.length === pinCount && (this.clipBoardCode !== code)) {
+            if (this.hasCheckedClipBoard && regexp.test(code) && (this.clipBoardCode !== code)) {
                 this.setState({
                     digits: code.split(""),
                 }, () => {
                     this.blurAllFields()
                     this.notifyCodeChanged()
+                    onCodeFilled && onCodeFilled(code)
                 })
             }
             this.clipBoardCode = code
