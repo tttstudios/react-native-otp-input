@@ -37,6 +37,7 @@ export default class App extends React.Component {
           })}
           // placeholderCharacter={'*'}
           // placeholderTextColor={'red'}
+          // selectionColor={"#03DAC6"}
         />
       </View>
     );
