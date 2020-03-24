@@ -1,6 +1,10 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TextStyle } from 'react-native';
 
-export default styles = StyleSheet.create({
+interface Styles {
+    defaultTextFieldStyle: TextStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
     defaultTextFieldStyle : {
         width : 45, 
         height : 45, 
@@ -10,4 +14,6 @@ export default styles = StyleSheet.create({
         textAlign : 'center',
         color: 'rgba(226, 226, 226, 1)', 
     },
-})
+});
+
+export default styles;
