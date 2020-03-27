@@ -2,8 +2,10 @@
  * created by: Eric Dao, Becky Wu from TTTStudios
  */
 
+
 declare module '@twotalltotems/react-native-otp-input' {
   import * as React from 'react'
+  import { TextStyle, ViewStyle } from 'react-native';
 
   /**
    * Define types of keyboard
@@ -18,13 +20,13 @@ declare module '@twotalltotems/react-native-otp-input' {
      */
     pinCount: number;
     /**
-     * Style of the inuput fields
+     * Style of the input fields
      */
-    codeInputFieldStyle?: object;
+    codeInputFieldStyle?: TextStyle;
     /**
      * Style of highlighted status for input fields
      */
-    codeInputHighlightStyle?: object;
+    codeInputHighlightStyle?: TextStyle;
     /**
      * Callback function
      * Trigger when all fields of the OTP has been filled
@@ -66,14 +68,23 @@ declare module '@twotalltotems/react-native-otp-input' {
     /**
      * Style of the OTP container view
      */
-    style?: object;
+    style?: ViewStyle;
     /**
      * The highlight (and cursor on iOS) color of the text input.
      */
     selectionColor?: string;
+    /**
+     * If inputs are automatically cleared.
+     */
+    clearInputs?: boolean;
   }
 
-  export default class OTPInputView extends React.Component<InputProps, any> {
+  export interface OTPInputViewState {
+      digits: string[];
+      selectedIndex: number;
+  }
+
+  export default class OTPInputView extends React.Component<InputProps, OTPInputViewState> {
 
   }
 }

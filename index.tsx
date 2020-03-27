@@ -1,57 +1,41 @@
+/// <reference path="index.d.ts" />
+import { InputProps, OTPInputViewState } from '@twotalltotems/react-native-otp-input';
 import React, { Component } from 'react'
-import { View, TextInput, TouchableWithoutFeedback, Clipboard, Keyboard, Platform, I18nManager, } from 'react-native'
-import PropTypes from 'prop-types'
+import { View, TextInput, TouchableWithoutFeedback, Clipboard, Keyboard, Platform, I18nManager, EmitterSubscription, } from 'react-native'
 import styles from './styles'
 import { isAutoFillSupported } from './helpers/device'
+import { codeToArray } from './helpers/codeToArray'
 
-export default class OTPInputView extends Component {
-    static propTypes = {
-        pinCount: PropTypes.number,
-        codeInputFieldStyle: PropTypes.object,
-        codeInputHighlightStyle: PropTypes.object,
-        onCodeFilled: PropTypes.func,
-        onCodeChanged: PropTypes.func,
-        autoFocusOnLoad: PropTypes.bool,
-        code: PropTypes.string,
-        secureTextEntry: PropTypes.bool,
-        keyboardType: PropTypes.string,
-        clearInputs: PropTypes.bool,
-        placeholderCharacter: PropTypes.string,
-        placeholderTextColor: PropTypes.string,
-        style: PropTypes.object,
-        selectionColor: PropTypes.string,
-    }
-
-    static defaultProps = {
+export default class OTPInputView extends Component<InputProps, OTPInputViewState> {
+    static defaultProps: InputProps = {
         pinCount: 6,
-        codeInputFieldStyle: null,
-        codeInputHighlightStyle: null,
-        onCodeFilled: null,
         autoFocusOnLoad: true,
         secureTextEntry: false,
         keyboardType: "number-pad",
         clearInputs: false,
         placeholderCharacter: "",
-        placeholderTextColor: null,
-        style: null,
         selectionColor: '#000',
     }
 
-    fields = []
+    private fields: TextInput[] | null[] = []
+    private keyboardDidHideListener?: EmitterSubscription;
+    private timer?: NodeJS.Timeout;
+    private hasCheckedClipBoard?: boolean;
+    private clipBoardCode?: string;
 
-    constructor(props) {
+    constructor(props: InputProps) {
         super(props)
         const { code } = props
         this.state = {
-            digits: (code === undefined ? [] : code.split("")),
+            digits: codeToArray(code),
             selectedIndex: 0,
         }
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps: InputProps) {
         const { code } = this.props
         if (nextProps.code !== code) {
-            this.setState({ digits: (nextProps.code === undefined ? [] : nextProps.code.split("")) })
+            this.setState({ digits: codeToArray(nextProps.code) })
         }
     }
 
@@ -62,18 +46,16 @@ export default class OTPInputView extends Component {
     }
 
     componentWillUnmount() {
-        if (this._timer) {
-            clearInterval(this._timer)
+        if (this.timer) {
+            clearInterval(this.timer)
         }
-        this.keyboardDidHideListener.remove()
+        this.keyboardDidHideListener?.remove()
     }
 
-    copyCodeFromClipBoardOnAndroid = () => {
+    private copyCodeFromClipBoardOnAndroid = () => {
         if (Platform.OS === "android") {
             this.checkPinCodeFromClipBoard()
-            this._timer = setInterval(() => {
-                this.checkPinCodeFromClipBoard()
-            }, 400)
+            this.timer = setInterval(this.checkPinCodeFromClipBoard, 400)
         }
     }
 
@@ -92,11 +74,11 @@ export default class OTPInputView extends Component {
         return code === undefined ? innerDigits : code.split("")
     }
 
-    handleKeyboardDidHide = () => {
+    private handleKeyboardDidHide = () => {
         this.blurAllFields()
     }
 
-    notifyCodeChanged = () => {
+    private notifyCodeChanged = () => {
         const { digits } = this.state
         const code = digits.join("")
         const { onCodeChanged } = this.props
@@ -120,11 +102,11 @@ export default class OTPInputView extends Component {
             }
             this.clipBoardCode = code
             this.hasCheckedClipBoard = true
-        }).catch(e => {
+        }).catch(() => {
         })
     }
 
-    handleChangeText = (index, text) => {
+    private handleChangeText = (index: number, text: string) => {
         const { onCodeFilled, pinCount } = this.props
         const digits = this.getDigits()
         let newdigits = digits.slice()
@@ -140,10 +122,10 @@ export default class OTPInputView extends Component {
                 }
             } else {
                 text.split("").forEach((value) => {
-                  if(index < pinCount) {
-                    newdigits[index] = value;
-                    index += 1;
-                  }
+                    if(index < pinCount) {
+                        newdigits[index] = value;
+                        index += 1;
+                    }
                 })
                 index -= 1
             }
@@ -162,7 +144,7 @@ export default class OTPInputView extends Component {
         }
     }
 
-    handleKeyPressTextInput = (index, key) => {
+    private handleKeyPressTextInput = (index: number, key: string) => {
         const digits = this.getDigits()
         if (key === 'Backspace') {
             if (!digits[index] && index > 0) {
@@ -172,9 +154,9 @@ export default class OTPInputView extends Component {
         }
     }
 
-    focusField = (index) => {
+    focusField = (index: number) => {
         if (index < this.fields.length) {
-            this.fields[index].focus()
+            (this.fields[index] as TextInput).focus();
             this.setState({
                 selectedIndex: index
             })
@@ -182,7 +164,7 @@ export default class OTPInputView extends Component {
     }
 
     blurAllFields = () => {
-        this.fields.forEach(field => field.blur())
+        this.fields.forEach((field: TextInput | null) => (field as TextInput).blur())
         this.setState({
             selectedIndex: -1,
         })
@@ -196,7 +178,7 @@ export default class OTPInputView extends Component {
         }
     }
 
-    renderOneInputField = (_, index) => {
+    renderOneInputField = (_: TextInput, index: number) => {
         const { codeInputFieldStyle, codeInputHighlightStyle, secureTextEntry, keyboardType, selectionColor } = this.props
         const { defaultTextFieldStyle } = styles
         const { selectedIndex, digits } = this.state
