@@ -1,12 +1,12 @@
 {
   "name": "@twotalltotems/react-native-otp-input",
-  "version": "1.3.3",
+  "version": "1.3.5",
   "description": "is a tiny JS library for one time passcode (OTP). Supports smart input suggestion on iOS and code autofill on Android (it will be filled when you press the copy button on the SMS notification bar)",
   "main": "./dist/index.js",
   "types": "./index.d.ts",
   "files": [
     "dist",
-    "./index.d.ts"
+    "index.d.ts"
   ],
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
