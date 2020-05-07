@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
 | onCodeChanged | NO | Callback when the digits are changed |
 | onCodeFilled | NO | Callback when the last digit is entered |
 | secureTextEntry | NO | Hide contents of text fields |
+| keyboardAppearance | NO | Keyboard appearance ('default', 'dark', 'light') |
 | keyboardType | NO | Keyboard type |
 | clearInputs | NO | Clear inputs after entering code |
 | placeholderCharacter | NO | The character/string that will be used as placeholder in the individual code input fields |
