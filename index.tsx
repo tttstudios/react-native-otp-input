@@ -28,7 +28,7 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
         const { code } = props
         this.state = {
             digits: codeToArray(code),
-            selectedIndex: 0,
+            selectedIndex: props.autoFocusOnLoad ? 0 : -1,
         }
     }
 
