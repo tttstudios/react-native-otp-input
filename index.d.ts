@@ -77,6 +77,11 @@ declare module '@twotalltotems/react-native-otp-input' {
      * If inputs are automatically cleared.
      */
     clearInputs?: boolean;
+
+    /**
+     * Keyboard appearance. The value can be 'default', 'dark' or 'light'.
+     */
+    keyboardAppearance?: 'default' | 'dark' | 'light';
   }
 
   export interface OTPInputViewState {
