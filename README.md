@@ -18,7 +18,7 @@ It does not have additional dependencies except for React Native itself.
 
 ## Basic Usage
 
-```
+```js
 import OTPInputView from '@twotalltotems/react-native-otp-input'
 
 ...
@@ -29,7 +29,7 @@ import OTPInputView from '@twotalltotems/react-native-otp-input'
 
 ## More Advanced Usage
 
-```
+```js
 import OTPInputView from '@twotalltotems/react-native-otp-input'
 
 ...
