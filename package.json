@@ -68,5 +68,8 @@
     "react-dom": "^16.12.0",
     "react-native": "^0.61.5",
     "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@react-native-community/clipboard": "^1.2.2"
   }
 }
