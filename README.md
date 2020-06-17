@@ -1,4 +1,5 @@
 ![PaginatableList](https://raw.githubusercontent.com/Twotalltotems/react-native-otp-input/master/assets/otp_banner.jpg)
+
 # React Native OTP Input
 
 ![Tests](https://github.com/Twotalltotems/react-native-otp-input/workflows/Tests/badge.svg)
@@ -9,11 +10,13 @@
 ![demo.gif](https://s3.ca-central-1.amazonaws.com/tttevents/android.gif)
 
 ## Installation
+
 `npm install --save @twotalltotems/react-native-otp-input`
 or
 `yarn add @twotalltotems/react-native-otp-input`
 
 ## Dependencies
+
 It does not have additional dependencies except for React Native itself.
 
 ## Basic Usage
@@ -73,36 +76,40 @@ const styles = StyleSheet.create({
 
 ## Parameters
 
-| Parameter   | required | Description |
-|-------------|----------|-------------|
-| pinCount    |    YES   |  Number of digits in the component |
-| code        |    NO    |  You can use this library as a controlled / uncontrolled component by supplying this prop or not |
-| codeInputFieldStyle | NO | The style of the input field which is NOT focused |
-| codeInputHighlightStyle | NO | The style of the input field which is focused |
-| autoFocusOnLoad | NO | Auto activate the input and bring up the keyboard when component is loaded |
-| onCodeChanged | NO | Callback when the digits are changed |
-| onCodeFilled | NO | Callback when the last digit is entered |
-| secureTextEntry | NO | Hide contents of text fields |
-| keyboardAppearance | NO | Keyboard appearance ('default', 'dark', 'light') |
-| keyboardType | NO | Keyboard type |
-| clearInputs | NO | Clear inputs after entering code |
-| placeholderCharacter | NO | The character/string that will be used as placeholder in the individual code input fields |
-| placeholderTextColor | NO | Color of the placeholderCharacter |
+| Parameter               | required | Description                                                                                     |
+| ----------------------- | -------- | ----------------------------------------------------------------------------------------------- |
+| pinCount                | YES      | Number of digits in the component                                                               |
+| code                    | NO       | You can use this library as a controlled / uncontrolled component by supplying this prop or not |
+| codeInputFieldStyle     | NO       | The style of the input field which is NOT focused                                               |
+| codeInputHighlightStyle | NO       | The style of the input field which is focused                                                   |
+| autoFocusOnLoad         | NO       | Auto activate the input and bring up the keyboard when component is loaded                      |
+| onCodeChanged           | NO       | Callback when the digits are changed                                                            |
+| onCodeFilled            | NO       | Callback when the last digit is entered                                                         |
+| secureTextEntry         | NO       | Hide contents of text fields                                                                    |
+| editable                | NO       | Set editable for inputs                                                                         |
+| keyboardAppearance      | NO       | Keyboard appearance ('default', 'dark', 'light')                                                |
+| keyboardType            | NO       | Keyboard type                                                                                   |
+| clearInputs             | NO       | Clear inputs after entering code                                                                |
+| placeholderCharacter    | NO       | The character/string that will be used as placeholder in the individual code input fields       |
+| placeholderTextColor    | NO       | Color of the placeholderCharacter                                                               |
 
 ## Notes
-The iOS input suggestion requires React Native 0.58+ and works for iOS 12 and above. 
 
-On Android, it will be auto filled when you press the copy code button in the notification bar (see above GIF). It will do so  only if the code is sent after the view is loaded. So make sure you request the code **AFTER** this view is loaded.
+The iOS input suggestion requires React Native 0.58+ and works for iOS 12 and above.
+
+On Android, it will be auto filled when you press the copy code button in the notification bar (see above GIF). It will do so only if the code is sent after the view is loaded. So make sure you request the code **AFTER** this view is loaded.
 
 If you are interested in Android SMS Retriever API, we would suggest @Faizal's repo [React-Native-OTP-Verify](https://github.com/faizalshap/react-native-otp-verify). It looks pretty cool and it should be straight-forward to use React-Native-OTP-Verify along with this library.
 
 ## Roadmap
-* [x] Typescript definition file
-* [x] Typescript implementation
-* [x] Add basic unit tests
-* [ ] Add integration tests
+
+- [x] Typescript definition file
+- [x] Typescript implementation
+- [x] Add basic unit tests
+- [ ] Add integration tests
 
 ## Contributors
+
 <table>
     <tr border="0" style="border: none; ">
 	      <th border="0" style="border-left: none; border-right: none;">
@@ -146,6 +153,7 @@ If you are interested in Android SMS Retriever API, we would suggest @Faizal's r
 </table>
 
 ## External Contributors
+
 <table>
     <tr border="0" style="border: none; ">
         <th border="0" style="border-left: none; border-right: none;">
