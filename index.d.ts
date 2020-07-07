@@ -54,6 +54,10 @@ declare module '@twotalltotems/react-native-otp-input' {
      */
     secureTextEntry?: boolean;
     /**
+     * Set editable for inputs
+     */
+    editable?: boolean;
+    /**
      * Type of the keyboard
      */
     keyboardType?: KeyboardType;
