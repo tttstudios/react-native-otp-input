@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm install --only=dev && npm test
+      - run: npm install && npm test
 
   publish-npm:
     needs: build
@@ -26,7 +26,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: npm install --only=dev
+      - run: npm install
       - run: npm run build
       - run: npm publish
         env:
