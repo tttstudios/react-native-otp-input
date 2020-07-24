@@ -50,9 +50,9 @@ import OTPInputView from '@twotalltotems/react-native-otp-input'
     autoFocusOnLoad
     codeInputFieldStyle={styles.underlineStyleBase}
     codeInputHighlightStyle={styles.underlineStyleHighLighted}
-    onCodeFilled = {(code => {
+    onCodeFilled = {(code) => {
         console.log(`Code is ${code}, you are good to go!`)
-    })}
+    }}
 />
 
 const styles = StyleSheet.create({
