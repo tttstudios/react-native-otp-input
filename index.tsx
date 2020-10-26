@@ -159,20 +159,18 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
 
     focusField = (index: number) => {
         if (index < this.fields.length) {
+            (this.fields[index] as TextInput).focus();
             this.setState({
                 selectedIndex: index
-            }, () => {
-                (this.fields[index] as TextInput).focus();
-            });
+            })
         }
     }
 
     blurAllFields = () => {
+        this.fields.forEach((field: TextInput | null) => (field as TextInput).blur())
         this.setState({
             selectedIndex: -1,
-        },() => {
-            this.fields.forEach((field: TextInput | null) => (field as TextInput).blur())
-        });
+        })
     }
 
 
