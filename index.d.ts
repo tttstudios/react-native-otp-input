@@ -86,6 +86,16 @@ declare module '@twotalltotems/react-native-otp-input' {
      * Keyboard appearance. The value can be 'default', 'dark' or 'light'.
      */
     keyboardAppearance?: 'default' | 'dark' | 'light';
+
+    /**
+     * Accessibility label. For test automation in android.
+     */
+     accessibilityLabel?: string;
+
+     /**
+      * Test id. For test automation in ios.
+      */
+     testID?: string;
   }
 
   export interface OTPInputViewState {

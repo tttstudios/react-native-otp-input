@@ -187,10 +187,12 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
         const { selectedIndex, digits } = this.state
         const { clearInputs, placeholderCharacter, placeholderTextColor } = this.props
         const { color: defaultPlaceholderTextColor } = { ...defaultTextFieldStyle, ...codeInputFieldStyle }
+        const { accessibilityLabel, testID } = this.props
         return (
             <View pointerEvents="none" key={index + "view"} testID="inputSlotView">
                 <TextInput
-                    testID="textInput"
+                    testID={testID ? `${testID}${index + 1}` : `inputSlot${index + 1}`}
+                    accessibilityLabel={accessibilityLabel ? `${accessibilityLabel}${index + 1}` : `inputSlot${index + 1}`}
                     underlineColorAndroid='rgba(0,0,0,0)'
                     style={selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
                     ref={ref => { this.fields[index] = ref }}
