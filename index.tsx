@@ -185,30 +185,33 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
         const { codeInputFieldStyle, codeInputHighlightStyle, secureTextEntry, editable, keyboardType, selectionColor, keyboardAppearance } = this.props
         const { defaultTextFieldStyle } = styles
         const { selectedIndex, digits } = this.state
-        const { clearInputs, placeholderCharacter, placeholderTextColor } = this.props
+        const { clearInputs, placeholderCharacter, placeholderTextColor, pinCount, middleDash } = this.props
         const { color: defaultPlaceholderTextColor } = { ...defaultTextFieldStyle, ...codeInputFieldStyle }
         return (
             <View pointerEvents="none" key={index + "view"} testID="inputSlotView">
-                <TextInput
-                    testID="textInput"
-                    underlineColorAndroid='rgba(0,0,0,0)'
-                    style={selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
-                    ref={ref => { this.fields[index] = ref }}
-                    onChangeText={text => {
-                        this.handleChangeText(index, text)
-                    }}
-                    onKeyPress={({ nativeEvent: { key } }) => { this.handleKeyPressTextInput(index, key) }}
-                    value={ !clearInputs ? digits[index]: "" }
-                    keyboardAppearance={keyboardAppearance}
-                    keyboardType={keyboardType}
-                    textContentType={isAutoFillSupported ? "oneTimeCode" : "none"}
-                    key={index}
-                    selectionColor={selectionColor}
-                    secureTextEntry={secureTextEntry}
-                    editable={editable}
-                    placeholder={placeholderCharacter}
-                    placeholderTextColor={placeholderTextColor || defaultPlaceholderTextColor}
-                />
+                <>
+                    <TextInput
+                        testID="textInput"
+                        underlineColorAndroid='rgba(0,0,0,0)'
+                        style={selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
+                        ref={ref => { this.fields[index] = ref }}
+                        onChangeText={text => {
+                            this.handleChangeText(index, text)
+                        }}
+                        onKeyPress={({ nativeEvent: { key } }) => { this.handleKeyPressTextInput(index, key) }}
+                        value={ !clearInputs ? digits[index]: "" }
+                        keyboardAppearance={keyboardAppearance}
+                        keyboardType={keyboardType}
+                        textContentType={isAutoFillSupported ? "oneTimeCode" : "none"}
+                        key={index}
+                        selectionColor={selectionColor}
+                        secureTextEntry={secureTextEntry}
+                        editable={editable}
+                        placeholder={placeholderCharacter}
+                        placeholderTextColor={placeholderTextColor || defaultPlaceholderTextColor}
+                    />
+                    {middleDash && index === pinCount / 2 - 1 && <View>{middleDash}</View>}
+                </>
             </View>
         )
     }
@@ -220,7 +223,7 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
     }
 
     render() {
-        const { pinCount, style, clearInputs } = this.props
+        const { pinCount, style, clearInputs, justifyContent = "space-between"} = this.props;
         const digits = this.getDigits()
         return (
             <View
@@ -240,7 +243,7 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
                     }}
                 >
                     <View
-                        style={{ flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%', height: '100%' }}
+                        style={{ flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row', justifyContent, alignItems: 'center', width: '100%', height: '100%' }}
                     >
                         {this.renderTextFields()}
                     </View>

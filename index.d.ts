@@ -15,6 +15,14 @@ declare module "@konkurenta/react-native-otp-input" {
 
   export interface InputProps {
     /**
+     * Justify content prop for input fields
+     */
+    justifyContent? : string
+    /**
+     * Element in middle of OTP inputs
+     */
+    middleDash?: Element
+    /**
      * Digits of pins in the OTP
      */
     pinCount: number;
