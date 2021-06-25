@@ -187,18 +187,20 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
         const { selectedIndex, digits } = this.state
         const { clearInputs, placeholderCharacter, placeholderTextColor } = this.props
         const { color: defaultPlaceholderTextColor } = { ...defaultTextFieldStyle, ...codeInputFieldStyle }
+		const textValue = !clearInputs ? digits[index]: "";
+		const isNotNullTextValue = selectedIndex === index || (textValue !== null && textValue !== undefined && textValue?.trim() !== '');
         return (
             <View pointerEvents="none" key={index + "view"} testID="inputSlotView">
                 <TextInput
                     testID="textInput"
                     underlineColorAndroid='rgba(0,0,0,0)'
-                    style={selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
+                    style={isNotNullTextValue ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
                     ref={ref => { this.fields[index] = ref }}
                     onChangeText={text => {
                         this.handleChangeText(index, text)
                     }}
                     onKeyPress={({ nativeEvent: { key } }) => { this.handleKeyPressTextInput(index, key) }}
-                    value={ !clearInputs ? digits[index]: "" }
+                    value={ textValue }
                     keyboardAppearance={keyboardAppearance}
                     keyboardType={keyboardType}
                     textContentType={isAutoFillSupported ? "oneTimeCode" : "none"}
