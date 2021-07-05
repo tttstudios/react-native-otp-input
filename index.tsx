@@ -52,7 +52,12 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
 
   componentDidMount() {
     this.copyCodeFromClipBoardOnAndroid()
-    this.bringUpKeyBoardIfNeeded()
+
+    //Fix AutoFocusOnLoad not working issue related to componentDidMount, reference: https://stackoverflow.com/questions/46715378/react-native-textinput-does-not-get-focus
+    setTimeout(() => {
+      this.bringUpKeyBoardIfNeeded()
+    }, 0)
+
     this.keyboardDidHideListener = Keyboard.addListener(
       'keyboardDidHide',
       this.handleKeyboardDidHide,
