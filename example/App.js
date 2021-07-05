@@ -14,33 +14,38 @@ import OTPInputView from '@twotalltotems/react-native-otp-input'
 
 export default class App extends React.Component {
   state = {
-    code: ""
+    code: '',
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={{marginTop: 30}} onPress={() => { this.setState({code: ""})}}> 
+        <TouchableOpacity
+          style={{ marginTop: 30 }}
+          onPress={() => {
+            this.setState({ code: '' })
+          }}
+        >
           <Text>Resend</Text>
         </TouchableOpacity>
 
         <OTPInputView
-          style={{width: '80%', height: 200}}
+          style={{ width: '80%', height: 200 }}
           pinCount={4}
           // code={this.state.code} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
           // onCodeChanged = {code => { this.setState({code})}}
           autoFocusOnLoad
           codeInputFieldStyle={styles.underlineStyleBase}
           codeInputHighlightStyle={styles.underlineStyleHighLighted}
-          onCodeFilled = {(code => {
-              console.log(`Code is ${code}, you are good to go!`)
-          })}
+          onCodeFilled={(code) => {
+            console.log(`Code is ${code}, you are good to go!`)
+          }}
           // placeholderCharacter={'*'}
           // placeholderTextColor={'red'}
           // selectionColor={"#03DAC6"}
         />
       </View>
-    );
+    )
   }
 }
 
@@ -54,11 +59,11 @@ const styles = StyleSheet.create({
 
   borderStyleBase: {
     width: 30,
-    height: 45
+    height: 45,
   },
 
   borderStyleHighLighted: {
-    borderColor: "#03DAC6",
+    borderColor: '#03DAC6',
   },
 
   underlineStyleBase: {
@@ -69,6 +74,6 @@ const styles = StyleSheet.create({
   },
 
   underlineStyleHighLighted: {
-    borderColor: "#03DAC6",
+    borderColor: '#03DAC6',
   },
-});
+})

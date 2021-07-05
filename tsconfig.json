@@ -29,14 +29,6 @@
     "lib": ["es6"],
     "typeRoots": ["./node_modules/@types"]
   },
-  "exclude": [
-    "node_modules",
-    "babel.config.js",
-    "jest.config.js"
-  ],
-  "include": [
-    "./index.tsx",
-    "./styles.ts",
-    "./index.d.ts"
-  ],
+  "exclude": ["node_modules", "babel.config.js", "jest.config.js"],
+  "include": ["./index.tsx", "./styles.ts", "./index.d.ts"]
 }

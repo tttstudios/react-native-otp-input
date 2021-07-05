@@ -71,5 +71,11 @@
   },
   "dependencies": {
     "@react-native-community/clipboard": "^1.2.2"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
   }
 }
