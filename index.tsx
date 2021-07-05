@@ -183,7 +183,7 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
   }
 
   blurAllFields = () => {
-    this.fields.forEach((field: TextInput | null) => (field as TextInput).blur())
+    this.fields.forEach((field: TextInput | null) => (field as TextInput)?.blur())
     this.setState({
       selectedIndex: -1,
     })
