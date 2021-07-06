@@ -59,6 +59,25 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
     )
   }
 
+  componentDidUpdate(prevProps: InputProps) {
+    const { code, pinCount, onCodeFilled } = this.props
+    const digits = this.getDigits()
+
+    // When user try to set the code without typing on keyboard, such as directly call setState or call setState in useEffect, it would not trigger onChangeText.
+    // In order to trigger the onCodeFilled & onCodeChanged in this scenario, compute the previous prop and current prop to manually trigger those functions.
+    if (prevProps.code && digits.length - prevProps.code.split('').length >= 2) {
+      if (digits.length - prevProps.code.split('').length >= 2) {
+        if (digits.length >= pinCount) {
+          onCodeFilled && code && onCodeFilled(code)
+          this.blurAllFields()
+        } else {
+          this.notifyCodeChanged()
+          this.focusField(digits.length - 1)
+        }
+      }
+    }
+  }
+
   componentWillUnmount() {
     if (this.timer) {
       clearInterval(this.timer)
