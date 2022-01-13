@@ -2,7 +2,7 @@
   "compilerOptions": {
     "declaration": true,
     "outDir": "./dist",
-    "strict": true,
+    "strict": false,
     "jsx": "react-native",
     "target": "es2019",
     "module": "es6",
@@ -27,16 +27,15 @@
     "noFallthroughCasesInSwitch": true,
     "strictPropertyInitialization": false,
     "lib": ["es6"],
-    "typeRoots": ["./node_modules/@types"]
+    "typeRoots": ["./node_modules/@types"],
+    "types": ["node"]
   },
   "exclude": [
     "node_modules",
     "babel.config.js",
-    "jest.config.js"
+    "jest.config.js",
+    "test.ts",
+    "**/*.spec.ts"
   ],
-  "include": [
-    "./index.tsx",
-    "./styles.ts",
-    "./index.d.ts"
-  ],
+  "include": ["./index.tsx", "./styles.ts", "./index.d.ts"]
 }
