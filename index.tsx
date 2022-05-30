@@ -1,7 +1,7 @@
 /// <reference path="index.d.ts" />
 import { InputProps, OTPInputViewState } from '@twotalltotems/react-native-otp-input';
 import React, { Component } from 'react'
-import { View, TextInput, TouchableWithoutFeedback, Keyboard, Platform, I18nManager, EmitterSubscription, } from 'react-native'
+import { View, TextInput, TouchableOpacity, Keyboard, Platform, I18nManager, EmitterSubscription, } from 'react-native'
 import Clipboard from '@react-native-community/clipboard';
 import styles from './styles'
 import { isAutoFillSupported } from './helpers/device'
@@ -227,7 +227,8 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
                 testID="OTPInputView"
                 style={style}
             >
-                <TouchableWithoutFeedback
+                <TouchableOpacity
+                    activeOpacity={1}
                     style={{ width: '100%', height: '100%' }}
                     onPress={() => {
                         if (!clearInputs) {
@@ -244,7 +245,7 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
                     >
                         {this.renderTextFields()}
                     </View>
-                </TouchableWithoutFeedback>
+                </TouchableOpacity>
             </View>
         );
     }
