@@ -1,7 +1,7 @@
 /// <reference path="index.d.ts" />
 import { InputProps, OTPInputViewState } from '@twotalltotems/react-native-otp-input';
 import React, { Component } from 'react'
-import { View, TextInput, TouchableWithoutFeedback, Keyboard, Platform, I18nManager, EmitterSubscription, } from 'react-native'
+import { View, TextInput, Keyboard, Platform, I18nManager, EmitterSubscription, } from 'react-native'
 import Clipboard from '@react-native-community/clipboard';
 import styles from './styles'
 import { isAutoFillSupported } from './helpers/device'
@@ -226,25 +226,26 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
             <View
                 testID="OTPInputView"
                 style={style}
-            >
-                <TouchableWithoutFeedback
+                onStartShouldSetResponder={() => {
+                    if (!clearInputs) {
+                        let filledPinCount = digits.filter((digit) => { return (digit !== null && digit !== undefined) }).length
+                        this.focusField(Math.min(filledPinCount, pinCount - 1))
+                    } else {
+                        this.clearAllFields();
+                        this.focusField(0)
+                    }
+                    return false
+                  }}
+                >
+                <View
                     style={{ width: '100%', height: '100%' }}
-                    onPress={() => {
-                        if (!clearInputs) {
-                            let filledPinCount = digits.filter((digit) => { return (digit !== null && digit !== undefined) }).length
-                            this.focusField(Math.min(filledPinCount, pinCount - 1))
-                        } else {
-                            this.clearAllFields();
-                            this.focusField(0)
-                        }
-                    }}
                 >
                     <View
                         style={{ flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%', height: '100%' }}
                     >
                         {this.renderTextFields()}
                     </View>
-                </TouchableWithoutFeedback>
+                </View>
             </View>
         );
     }
