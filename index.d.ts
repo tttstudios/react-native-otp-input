@@ -28,6 +28,10 @@ declare module '@twotalltotems/react-native-otp-input' {
      */
     codeInputHighlightStyle?: TextStyle;
     /**
+     * Style of the filled input fields
+     */
+    codeInputFilledStyle?: TextStyle;
+    /**
      * Callback function
      * Trigger when all fields of the OTP has been filled
      *
@@ -89,8 +93,8 @@ declare module '@twotalltotems/react-native-otp-input' {
   }
 
   export interface OTPInputViewState {
-      digits: string[];
-      selectedIndex: number;
+    digits: string[];
+    selectedIndex: number;
   }
 
   export default class OTPInputView extends React.Component<InputProps, OTPInputViewState> {

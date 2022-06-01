@@ -125,7 +125,7 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
                 }
             } else {
                 text.split("").forEach((value) => {
-                    if(index < pinCount) {
+                    if (index < pinCount) {
                         newdigits[index] = value;
                         index += 1;
                     }
@@ -182,7 +182,7 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
     }
 
     renderOneInputField = (_: TextInput, index: number) => {
-        const { codeInputFieldStyle, codeInputHighlightStyle, secureTextEntry, editable, keyboardType, selectionColor, keyboardAppearance } = this.props
+        const { codeInputFieldStyle, codeInputFilledStyle, codeInputHighlightStyle, secureTextEntry, editable, keyboardType, selectionColor, keyboardAppearance } = this.props
         const { defaultTextFieldStyle } = styles
         const { selectedIndex, digits } = this.state
         const { clearInputs, placeholderCharacter, placeholderTextColor } = this.props
@@ -192,13 +192,13 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
                 <TextInput
                     testID="textInput"
                     underlineColorAndroid='rgba(0,0,0,0)'
-                    style={selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
+                    style={selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : (selectedIndex < index ? [defaultTextFieldStyle, codeInputFieldStyle] : [defaultTextFieldStyle, codeInputFilledStyle])}
                     ref={ref => { this.fields[index] = ref }}
                     onChangeText={text => {
                         this.handleChangeText(index, text)
                     }}
                     onKeyPress={({ nativeEvent: { key } }) => { this.handleKeyPressTextInput(index, key) }}
-                    value={ !clearInputs ? digits[index]: "" }
+                    value={!clearInputs ? digits[index] : ""}
                     keyboardAppearance={keyboardAppearance}
                     keyboardType={keyboardType}
                     textContentType={isAutoFillSupported ? "oneTimeCode" : "none"}
