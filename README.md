@@ -1,4 +1,4 @@
-# React Native OTP Input
+# React Native Simple OTP
 
 **react-native-simple-otp** is a library for react-native that just makes handling otp easy.
 

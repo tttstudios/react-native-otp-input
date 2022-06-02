@@ -1,6 +1,6 @@
 {
   "name": "react-native-simple-otp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "is a library for react-native that just makes handling otp easy.",
   "main": "./dist/index.js",
   "types": "./index.d.ts",
