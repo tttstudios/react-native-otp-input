@@ -1,6 +1,6 @@
 {
-  "name": "react-native-easy-otp",
-  "version": "0.1.0",
+  "name": "react-native-quick-otp",
+  "version": "1.0.0",
   "description": "is a library for react-native that just makes handling otp easy.",
   "main": "./dist/index.js",
   "types": "./index.d.ts",
@@ -31,7 +31,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/saheem128/react-native-easy-otp.git"
+    "url": "git+https://github.com/saheem128/react-native-quick-otp.git"
   },
   "keywords": [
     "react-native",
