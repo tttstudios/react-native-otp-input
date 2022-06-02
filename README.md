@@ -1,17 +1,17 @@
 # React Native OTP Input
 
-**react-native-quick-otp** is a library for react-native that just makes handling otp easy.
+**react-native-simple-otp** is a library for react-native that just makes handling otp easy.
 
 ## Installation
 
-`npm install --save react-native-quick-otp`
+`npm install --save react-native-simple-otp`
 or
-`yarn add react-native-quick-otp`
+`yarn add react-native-simple-otp`
 
 ## Basic Usage
 
 ```js
-import OTPInputView from 'react-native-quick-otp'
+import OTPInputView from 'react-native-simple-otp'
 
 ...
 
@@ -22,7 +22,7 @@ import OTPInputView from 'react-native-quick-otp'
 ## More Advanced Usage
 
 ```js
-import OTPInputView from 'react-native-quick-otp'
+import OTPInputView from 'react-native-simple-otp'
 
 ...
 
