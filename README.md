@@ -10,7 +10,7 @@
 ![demo.gif](https://s3.ca-central-1.amazonaws.com/tttevents/android.gif)
 
 ## Project Status
-Due to our current priorities, this project is not actively maintained anymore. If you are interested in helping us maintain this library, please get in touch via [mobile@ttt.studio](mailto:mobile@ttt.studio).
+This project is not actively maintained anymore. If you’d like to contribute, we encourage you to fork this repository and improve it for the community.
 
 Here are some alternatives you could try:
 
