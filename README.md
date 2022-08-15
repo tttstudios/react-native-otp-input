@@ -9,6 +9,14 @@
 ![demo.gif](https://s3.ca-central-1.amazonaws.com/tttevents/iosvideo.gif)
 ![demo.gif](https://s3.ca-central-1.amazonaws.com/tttevents/android.gif)
 
+## Project Status
+This project is not actively maintained anymore. If you’d like to contribute, we encourage you to fork this repository and improve it for the community.
+
+Here are some alternatives you could try:
+
+- [react-native-otp-inputs](https://www.npmjs.com/package/react-native-otp-inputs)
+- [react-native-otp-textinput](https://www.npmjs.com/package/react-native-otp-textinput)
+
 ## Installation
 
 `npm install --save @twotalltotems/react-native-otp-input`
@@ -171,9 +179,9 @@ If you are interested in Android SMS Retriever API, we would suggest @Faizal's r
     </tr>
 </table>
 
-## Premium Support By TTT Studios
+## About the Creators
 
-OTP input is presented by the mobile team at [TTT Studios](https://ttt.studio). We are a Digital Innovation Studio based out of Vancouver, Canada, delivering custom software and solutions that are designed and developed 100% in-house. The technologies we work with include AR & VR, IoT, AI, security & encryption, and cloud computing.
+OTP input is developed by the mobile team at [TTT Studios](https://ttt.studio). We are a Digital Innovation Studio based out of Vancouver, Canada, delivering custom software and solutions that are designed and developed 100% in-house. The technologies we work with include AR & VR, IoT, AI, security & encryption, and cloud computing.
 
 <div align="right">
 	<img src="https://ttt.studio/wp-content/themes/tttwordpresstheme/imgs/ttt-colour.png" width="200px"/>
