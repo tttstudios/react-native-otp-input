@@ -57,5 +57,3 @@ buck-out/
 .env
 ReactotronConfig.js
 
-# ts build dir
-dist
