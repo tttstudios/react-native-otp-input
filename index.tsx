@@ -198,7 +198,7 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
                         this.handleChangeText(index, text)
                     }}
                     onKeyPress={({ nativeEvent: { key } }) => { this.handleKeyPressTextInput(index, key) }}
-                    value={ !clearInputs ? digits[index]: "" }
+                    value={ !clearInputs ? (digits[index] || placeholderCharacter || ""): "" }
                     keyboardAppearance={keyboardAppearance}
                     keyboardType={keyboardType}
                     textContentType={isAutoFillSupported ? "oneTimeCode" : "none"}
