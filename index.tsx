@@ -1,8 +1,7 @@
 /// <reference path="index.d.ts" />
 import { InputProps, OTPInputViewState } from '@twotalltotems/react-native-otp-input';
 import React, { Component } from 'react'
-import { View, TextInput, TouchableWithoutFeedback, Keyboard, Platform, I18nManager, EmitterSubscription, } from 'react-native'
-import Clipboard from '@react-native-community/clipboard';
+import { View, Clipboard, TextInput, TouchableWithoutFeedback, Keyboard, Platform, I18nManager, EmitterSubscription, } from 'react-native'
 import styles from './styles'
 import { isAutoFillSupported } from './helpers/device'
 import { codeToArray } from './helpers/codeToArray'
