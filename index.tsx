@@ -25,6 +25,7 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
     private timer?: NodeJS.Timeout;
     private hasCheckedClipBoard?: boolean;
     private clipBoardCode?: string;
+    private lastInputTime: number = 0;
 
     constructor(props: InputProps) {
         super(props)
@@ -150,10 +151,16 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
     private handleKeyPressTextInput = (index: number, key: string) => {
         const digits = this.getDigits()
         if (key === 'Backspace') {
-            if (!digits[index] && index > 0) {
+            /**
+             * With some CJK keyboards (like Sogou IME for Chinese on Android), we might receive an unwanted `Backspace` key event right after we focus to the next field.
+             * Here we filter out these unwanted `Backspace` events within 200ms after each valid key press.
+             */
+            if (!digits[index] && index > 0 && Date.now() - this.lastInputTime > 200) {
                 this.handleChangeText(index - 1, '')
                 this.focusField(index - 1)
             }
+        } else {
+            this.lastInputTime = Date.now()
         }
     }
 
