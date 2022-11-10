@@ -152,6 +152,12 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
         if (key === 'Backspace') {
             if (!digits[index] && index > 0) {
                 this.handleChangeText(index - 1, '')
+                const digits = this.getDigits();
+                const newdigits = digits.slice();
+                
+                this.setState({
+                    digits: newdigits.map((item, i) => (i === index - 1 ? "" : item)),
+                });
                 this.focusField(index - 1)
             }
         }
