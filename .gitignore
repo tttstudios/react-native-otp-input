@@ -58,4 +58,4 @@ buck-out/
 ReactotronConfig.js
 
 # ts build dir
-dist
+# dist
