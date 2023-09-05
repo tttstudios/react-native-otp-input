@@ -125,13 +125,21 @@ export default class OTPInputView extends Component {
             }
         };
         this.renderOneInputField = (_, index) => {
-            const { codeInputFieldStyle, codeInputHighlightStyle, secureTextEntry, editable, keyboardType, selectionColor, keyboardAppearance } = this.props;
+            const { codeInputFieldStyle, codeInputHighlightStyle, filledInputStyle, secureTextEntry, editable, keyboardType, selectionColor, keyboardAppearance } = this.props;
             const { defaultTextFieldStyle } = styles;
             const { selectedIndex, digits } = this.state;
             const { clearInputs, placeholderCharacter, placeholderTextColor } = this.props;
             const { color: defaultPlaceholderTextColor } = { ...defaultTextFieldStyle, ...codeInputFieldStyle };
             return (<View pointerEvents="none" key={index + "view"} testID="inputSlotView">
-                <TextInput testID="textInput" underlineColorAndroid='rgba(0,0,0,0)' style={selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]} ref={ref => { this.fields[index] = ref; }} onChangeText={text => {
+                <TextInput testID="textInput" underlineColorAndroid='rgba(0,0,0,0)' style={(() => {
+                if (selectedIndex === index) {
+                    return [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle];
+                }
+                if (digits[index]) {
+                    return [defaultTextFieldStyle, codeInputFieldStyle, filledInputStyle];
+                }
+                return [defaultTextFieldStyle, codeInputFieldStyle];
+            })()} ref={ref => { this.fields[index] = ref; }} onChangeText={text => {
                 this.handleChangeText(index, text);
             }} onKeyPress={({ nativeEvent: { key } }) => { this.handleKeyPressTextInput(index, key); }} value={!clearInputs ? digits[index] : ""} keyboardAppearance={keyboardAppearance} keyboardType={keyboardType} textContentType={isAutoFillSupported ? "oneTimeCode" : "none"} key={index} selectionColor={selectionColor} secureTextEntry={secureTextEntry} editable={editable} placeholder={placeholderCharacter} placeholderTextColor={placeholderTextColor || defaultPlaceholderTextColor}/>
             </View>);
