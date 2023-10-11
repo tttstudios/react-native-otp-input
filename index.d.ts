@@ -15,6 +15,7 @@ declare module '@twotalltotems/react-native-otp-input' {
   type KeyboardType = 'default' | 'email-address' | 'number-pad' | 'phone-pad';
 
   export interface InputProps {
+    pinGroups: number;
     /**
      * Digits of pins in the OTP
      */

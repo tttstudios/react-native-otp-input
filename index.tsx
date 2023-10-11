@@ -18,6 +18,7 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
         clearInputs: false,
         placeholderCharacter: "",
         selectionColor: '#000',
+        pinGroups: 1,
     }
 
     private fields: TextInput[] | null[] = []
@@ -213,10 +214,24 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
         )
     }
 
+    renderTextGroups = (pinList: TextInput[],groupIndex: number, pinPerGroups: number)=>{
+        const currentIndex= (groupIndex*pinPerGroups)
+
+        return ( 
+        <View pointerEvents="none" key={groupIndex + "view"} testID="inputGroupSlotView" style={{marginHorizontal:15}}>
+            {pinList.slice(currentIndex,(currentIndex+pinPerGroups)).map((pinVal,pinIndex) =>{
+            this.renderOneInputField(pinVal,(currentIndex+pinIndex))
+        })}
+        </View>)
+    }
     renderTextFields = () => {
-        const { pinCount } = this.props
-        const array = new Array(pinCount).fill(0)
-        return array.map(this.renderOneInputField)
+        const { pinCount, pinGroups } = this.props
+        const pinPerGrops = Math.ceil(pinCount/pinGroups);            
+        const pinCountArray = new Array(pinCount).fill(0)
+        const pinGroupsArray = new Array(pinGroups).fill(0)
+        return pinGroupsArray.map((_,index)=>{
+            return this.renderTextGroups(pinCountArray,index,pinPerGrops)
+        })
     }
 
     render() {
