@@ -2,7 +2,7 @@
 import { InputProps, OTPInputViewState } from '@twotalltotems/react-native-otp-input';
 import React, { Component } from 'react'
 import { View, TextInput, TouchableWithoutFeedback, Keyboard, Platform, I18nManager, EmitterSubscription, } from 'react-native'
-import Clipboard from '@react-native-community/clipboard';
+import * as Clipboard from 'expo-clipboard';
 import styles from './styles'
 import { isAutoFillSupported } from './helpers/device'
 import { codeToArray } from './helpers/codeToArray'
@@ -93,7 +93,7 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
     checkPinCodeFromClipBoard = () => {
         const { pinCount, onCodeFilled } = this.props
         const regexp = new RegExp(`^\\d{${pinCount}}$`)
-        Clipboard.getString().then(code => {
+        Clipboard.getStringAsync().then(code => {
             if (this.hasCheckedClipBoard && regexp.test(code) && (this.clipBoardCode !== code)) {
                 this.setState({
                     digits: code.split(""),
